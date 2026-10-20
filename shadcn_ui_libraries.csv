@@ -1,0 +1,26 @@
+﻿Category,Library,Website,Stack / relationship,Provides,Coverage,Best for,Notes
+Core UI,shadcn/ui,https://ui.shadcn.com,Radix UI / Base UI + Tailwind,Buttons; forms; dialogs; menus; tables; charts; layouts,Broad component foundation,Primary app UI,Copy components into your codebase
+Core UI,Kibo UI,https://www.kibo-ui.com,shadcn/ui + Tailwind,Advanced application components; complex interaction patterns,Broad extension,SaaS and internal tools,Use alongside shadcn/ui
+Core UI,ReUI,https://reui.io,React + Tailwind; shadcn ecosystem,Data grids; filters; uploads; Kanban; Gantt; application widgets,Broad extension,Complex admin interfaces,Check individual component dependencies
+Core UI,coss ui / Origin UI,https://coss.com,Base UI + Tailwind,Inputs; selectors; controls; polished UI patterns,Broad component collection,Forms and product UI,Check primitive compatibility before mixing
+Core UI,shadcn/ui Expansions,https://www.shadcnui-expansions.com,shadcn/ui,Additional controls and composed components,Extension collection,Filling missing components,Verify maintenance per component
+Core UI,Shadcn Studio,https://www.shadcnstudio.com,shadcn/ui + Tailwind,Components; themes; templates; blocks,Components and templates,Product UI and dashboards,Some resources may be paid
+Blocks & Templates,shadcn/ui Blocks,https://ui.shadcn.com/blocks,shadcn/ui,Login screens; dashboards; sidebar layouts,Page blocks,Application scaffolding,Official starting point
+Blocks & Templates,Shadcnblocks,https://www.shadcnblocks.com,shadcn/ui + Tailwind,Landing pages; sections; navigation; templates,Large block collection,Websites and SaaS marketing,Check free vs paid blocks
+Blocks & Templates,Tailark,https://tailark.com,Tailwind CSS + shadcn/ui style,Landing-page sections; marketing layouts,Page blocks,Marketing websites,Not a replacement for application controls
+Blocks & Templates,Aceternity UI,https://ui.aceternity.com,React + Tailwind + animation libraries,Animated hero sections; backgrounds; interactive cards,Visual blocks and effects,Marketing and portfolios,Select effects sparingly
+Dashboards & Data,Tremor,https://www.tremor.so,React + Tailwind,Charts; KPI cards; dashboard components,Analytics-focused collection,Analytics dashboards,Not a general UI foundation
+Dashboards & Data,TanStack Table,https://tanstack.com/table/latest,Headless React table library,Sorting; filtering; grouping; pagination; virtualization integration,Specialized engine,Complex tables,Requires UI assembly; not shadcn component kit
+Forms & Inputs,Shadcn Form,https://www.shadcn-form.com,shadcn/ui form ecosystem,Form builder and form-generation utilities,Specialized tool,Quick form scaffolding,Review generated validation and accessibility
+Forms & Inputs,React Hook Form,https://react-hook-form.com,React,Form state; validation integration; field arrays,Specialized engine,Production forms,Works with shadcn; not a component library
+AI Interfaces,AI Elements,https://elements.ai-sdk.dev,shadcn/ui + AI SDK,Chat messages; prompts; streaming UI; AI interaction components,AI-focused component collection,AI chat products,Check current migration guidance
+AI Interfaces,assistant-ui,https://www.assistant-ui.com,React assistant primitives,Thread UI; message rendering; assistant interactions,AI-focused framework,Embedded AI assistants,Focused on conversational UI
+Animation & Effects,Magic UI,https://magicui.design,React + Tailwind; shadcn-style,Animated buttons; text; effects; decorative sections,Animation collection,SaaS landing pages,Complements core UI
+Animation & Effects,Animate UI,https://animate-ui.com,React + Tailwind; shadcn-style,Animated dialogs; tabs; menus; transitions,Animated component collection,Polished app interactions,Avoid stacking competing animation implementations
+Animation & Effects,Motion Primitives,https://motion-primitives.com,React + Motion,Text animations; transitions; micro-interactions,Motion primitives,Refined UX motion,Not a complete UI library
+Animation & Effects,React Bits,https://www.reactbits.dev,React; CSS / Tailwind variants,Text effects; backgrounds; animations; interactive components,Creative effects collection,Creative websites,Performance-check heavier effects
+Animation & Effects,Eldora UI,https://www.eldoraui.site,React + Tailwind,Animated decorative components and sections,Visual effect collection,Landing pages,Specialized rather than full app UI
+Experimental & Niche,Cult UI,https://cult-ui.com,React + Tailwind,Unconventional UI components and interactions,Experimental collection,Distinctive product visuals,Review accessibility and stability
+Experimental & Niche,8bitcn,https://www.8bitcn.com,shadcn-inspired + Tailwind,Pixel-art style buttons; forms; UI elements,Themed component kit,Retro or game-like UI,Stylistic alternative
+Experimental & Niche,Uiverse,https://uiverse.io,Community HTML/CSS/React snippets,Community buttons; loaders; cards; CSS effects,Snippet marketplace,Small visual details,Quality and licensing vary by contribution
+Directories,shadcn Registry Directory,https://ui.shadcn.com/docs/directory,Official shadcn ecosystem index,Links to third-party registries,Directory only,Discovering registries,Not a component library
