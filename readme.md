@@ -1,5 +1,4 @@
-#dead line 10 nov 
-
+# dead line 10 nov
 ## TuniHack 12.0 — Website Components
 
 ## 1. Overview
