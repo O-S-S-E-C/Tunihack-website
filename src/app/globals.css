@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+:root {
+  --background: #040918;
+  --foreground: #eaf0ff;
+  --primary: #2563eb;
+  --secondary: #22d3ee;
+  --sky-blue: #0a1a55;
+  --muted: #a9b8d6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-sky-blue: var(--sky-blue);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+}
+
+::selection {
+  background: var(--secondary);
+  color: #050505;
+}
+
+.cyan-rule {
+  height: 5px;
+  width: 96px;
+  background: var(--secondary);
+  opacity: 1;
+  border-radius: 999px;
+}
+
+.section-kicker {
+  color: var(--secondary);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.outline-button {
+  border: 2px solid rgba(234, 240, 255, 0.42);
+  color: var(--foreground);
+  transition: background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.outline-button:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+  box-shadow: 0 0 28px rgba(34, 211, 238, 0.18);
+}
+
+.lime-button {
+  background: var(--primary);
+  color: var(--foreground);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.lime-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
+}
+
+.starfield {
+  background-color: #040918;
+  background-image:
+    radial-gradient(circle at 12% 20%, rgba(255,255,255,.75) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 77% 18%, rgba(255,255,255,.65) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 51% 68%, rgba(255,255,255,.6) 0 1px, transparent 1.5px),
+    radial-gradient(ellipse at 58% 70%, rgba(37,99,235,.75), transparent 48%),
+    radial-gradient(ellipse at 90% 20%, rgba(37,99,235,.45), transparent 38%);
+  background-size: 180px 180px, 240px 240px, 310px 310px, 100% 100%, 100% 100%;
+}
+
+.hero-icon {
+  position: absolute;
+  left: 0; top: 0;
+  color: #7fa8ff;
+  will-change: transform;
+}
+/* In src/app/globals.css, REPLACE the existing .hero-glow block with: */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 34% 48% at 64% 52%, rgba(37, 99, 235, 0.16), transparent 72%),
+    radial-gradient(ellipse 22% 30% at 64% 78%, rgba(34, 211, 238, 0.07), transparent 70%);
+}
+.hero-vignette {
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(2, 5, 16, 0.7) 100%);
+}
+
+.hero-inner {
+  opacity: clamp(0, calc(1 - var(--p, 0) * 1.4), 1);
+  transform: translateY(calc(var(--p, 0) * -50px)) scale(calc(1 - var(--p, 0) * 0.05));
+  will-change: transform, opacity;
+}
+.hero-dim {
+  background: var(--background);
+  opacity: calc(var(--p, 0) * 0.85);
+}
+
+.page-sheet {
+  border-top: 1px solid rgba(34, 211, 238, 0.35);
+  border-radius: 2rem 2rem 0 0;
+  box-shadow: 0 -24px 70px rgba(37, 99, 235, 0.22);
+}
+
+.hero-rise {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: hero-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+@keyframes hero-rise { to { opacity: 1; transform: none; } }
+
+.hero-fade {
+  animation: hero-fade 4200ms ease-in-out both;
+}
+
+@keyframes hero-fade {
+  0%, 12% { opacity: 0; transform: translateY(4px); }
+  20%, 78% { opacity: 1; transform: translateY(0); }
+  90%, 100% { opacity: 0; transform: translateY(-4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise { animation: none; opacity: 1; transform: none; }
+  .hero-inner { transform: none; }
+}
+
+.nav-enter {
+  animation: nav-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes nav-enter {
+  from { transform: translateY(-80px); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-enter { animation: none; }
+}
