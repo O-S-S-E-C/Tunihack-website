@@ -38,3 +38,9 @@ npm run start
 Available tiers are `platinum`, `gold`, and `partner`. The graph calculates the sponsor position and connections automatically. `logo`, `url`, and `invert` are optional; when no logo is available, the graph displays the sponsor initials.
 
 After adding a sponsor, run `npm run build` to check the data and layout compile correctly.
+
+# next steps
+. add instagram link 
+. add registration link 
+. modify both tunihack and pitchhack  description 
+. work more on the eventsection 

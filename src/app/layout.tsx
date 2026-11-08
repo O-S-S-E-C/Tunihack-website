@@ -30,6 +30,11 @@ const jetbrains = localFont({
 export const metadata: Metadata = {
   title: "TuniHack 12.0",
   description: "Tunisia's National Hackathon",
+  icons: {
+    icon: "/logo/tunihack.png",
+    shortcut: "/logo/tunihack.png",
+    apple: "/logo/tunihack.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
