@@ -43,7 +43,7 @@ const CountdownTimer = () => {
   }, []);
 
   return (
-    <section className="py-24 px-6 bg-background border-b border-white/10">
+    <section className="py-24 px-6 bg-transparent border-b border-white/10">
       <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
         <TimeUnit value={timeLeft.days} label="Days" />
         <TimeUnit value={timeLeft.hours} label="Hrs" />

@@ -62,7 +62,7 @@ function Logo() {
 const Footer = () => {
   const socials = OSSEC.socials.filter((s) => s.href);
   return (
-    <footer className="border-t border-white/10 bg-[#040918]">
+    <footer className="border-t border-white/10 bg-[#040918]/50 backdrop-blur-sm">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-14 md:grid-cols-2 md:px-16 lg:grid-cols-4">
         <div>
           <Logo />

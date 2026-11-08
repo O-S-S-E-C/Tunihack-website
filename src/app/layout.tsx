@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import SiteBackground from "@/components/layout/SiteBackground";
 
 const geist = localFont({
   src: [
@@ -43,7 +44,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={cn("h-full", "antialiased", inter.variable, jetbrains.variable, "font-sans", geist.variable)}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="relative isolate min-h-full flex flex-col">
+        <SiteBackground />
+        <div aria-hidden="true" className="site-background-overlay pointer-events-none fixed inset-0 z-0" />
+        {children}
+      </body>
     </html>
   );
 }

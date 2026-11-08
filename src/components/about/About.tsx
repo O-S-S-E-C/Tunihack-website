@@ -66,7 +66,7 @@ function EventWordmark({ name, subtitle }: { name: "TuniHack" | "PitchHack"; sub
 
 export default function About() {
   return (
-    <section id="about" className="about-section bg-background px-6 py-24">
+    <section id="about" className="about-section bg-transparent px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <div className="about-heading-wrap">
           <p className="about-eyebrow">EVENTS & COMMUNITY</p>

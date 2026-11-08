@@ -106,7 +106,8 @@ void main() {
   float sweep = exp(-pow((vUv.y - (1.0 - fract(uTime * 0.12))) * 9.0, 2.0));
   float flick = 0.97 + 0.03 * sin(uTime * 47.0 + uPhase) + uGlitch * 0.12;
 
-  vec3 col = c.rgb * scan * flick;
+  vec3 col = c.rgb * scan * flick * 1.4;
+  col += vec3(0.015, 0.055, 0.085) * c.a;
   col *= mix(vec3(1.0), vec3(0.45, 0.85, 1.25), uTint);
   col += vec3(0.2, 0.75, 1.0) * sweep * 0.2 * c.a;
 
@@ -192,7 +193,7 @@ export default function HeroScene() {
     }
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(Math.max(window.devicePixelRatio || 1, 1), 2);
     renderer.setPixelRatio(dpr);
     renderer.setClearColor(0x000000, 0);
     const canvas = renderer.domElement;
@@ -200,8 +201,27 @@ export default function HeroScene() {
     host.appendChild(canvas);
 
     const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x040918, 18, 58);
     const camera = new THREE.PerspectiveCamera(FOV, 1, 0.1, 120);
     camera.position.set(0, 0.5, CAMERA_Z);
+    const cameraPath = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(0, 0.5, CAMERA_Z), new THREE.Vector3(0, 0, 0),
+      new THREE.Vector3(-0.4, 0, -10), new THREE.Vector3(0.35, -0.3, -22),
+      new THREE.Vector3(0, 0.1, -34), new THREE.Vector3(-0.2, 0, -42),
+    ]);
+    const cameraPoint = new THREE.Vector3();
+    const lookPoint = new THREE.Vector3();
+    const scroll = { target: 0, progress: 0 };
+    let fogTint = 0x22d3ee;
+    const updateScroll = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      scroll.target = maxScroll > 0 ? clamp01(window.scrollY / maxScroll) : 0;
+      const section = document.elementFromPoint(window.innerWidth / 2, window.innerHeight / 2)?.closest("section")?.id;
+      fogTint = section === "sponsors" ? 0x4050a8 : section === "about" ? 0x2563eb : 0x22d3ee;
+    };
+    updateScroll();
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    window.addEventListener("resize", updateScroll, { passive: true });
 
     const raw = (hex: number) => new THREE.Color().setHex(hex, THREE.LinearSRGBColorSpace);
 
@@ -242,7 +262,7 @@ export default function HeroScene() {
       });
 
     /* ---- star field ----------------------------------------------------- */
-    const starCount = window.innerWidth < 700 ? 900 : 1800;
+    const starCount = window.innerWidth < 700 ? 450 : 1800;
     const sPos = new Float32Array(starCount * 3);
     const sSize = new Float32Array(starCount);
     const sPhase = new Float32Array(starCount);
@@ -349,15 +369,24 @@ export default function HeroScene() {
     });
 
     /* ---- drifters -------------------------------------------------------- */
-    const drifters = DRIFTERS.map((d, i) => {
-      const geo = d.geo();
-      const wire = new THREE.EdgesGeometry(geo, 1);
-      const mesh = new THREE.LineSegments(wire, holo(bgU, d.color, 0.9, true));
+    const sourceGeometries = DRIFTERS.map((d) => d.geo());
+    const edgeGeometries = sourceGeometries.map((geo) => new THREE.EdgesGeometry(geo, 1));
+    const drifterMaterials = new Map<number, THREE.ShaderMaterial>();
+    const isSmallScreen = window.innerWidth < 700;
+    const drifterTemplates = isSmallScreen ? DRIFTERS.filter((d) => d.size > 0.42) : DRIFTERS;
+    const drifterCount = drifterTemplates.length * 5;
+    const drifters = Array.from({ length: drifterCount }, (_, i) => {
+      const template = drifterTemplates[i % drifterTemplates.length];
+      const depth = Math.floor(i / drifterTemplates.length);
+      const d = { ...template, z: -2 - depth * 9 - (i % 3) * 1.4, fx: ((template.fx + depth * 0.31 + 1) % 2) - 1, fy: ((template.fy + depth * 0.43 + 1) % 2) - 1 };
+      let material = drifterMaterials.get(d.color);
+      if (!material) { material = holo(bgU, d.color, 0.9, true); drifterMaterials.set(d.color, material); }
+      const mesh = new THREE.LineSegments(edgeGeometries[i % edgeGeometries.length], material);
       mesh.scale.setScalar(d.size);
       scene.add(mesh);
-      geo.dispose();
       return { d, mesh, phase: i * 1.7 };
     });
+    sourceGeometries.forEach((geo) => geo.dispose());
 
     /* ---- central 3D lock hologram -------------------------------------- */
     const lock = new THREE.Group();
@@ -470,27 +499,33 @@ export default function HeroScene() {
 
       drifters.forEach(({ d, mesh }) => {
         const hh = halfH(d.z);
-        mesh.userData.bx = d.fx * hh * aspect * 0.95;
-        mesh.userData.by = d.fy * hh * 0.9;
+        // Keep later wireframes in the camera's narrower forward view instead of
+        // laying them out for the hero's much wider near-camera frustum.
+        const deep = d.z < -10;
+        mesh.userData.bx = d.fx * (deep ? Math.min(hh * aspect * 0.95, 3.8) : hh * aspect * 0.95);
+        mesh.userData.by = d.fy * (deep ? Math.min(hh * 0.9, 2.8) : hh * 0.9);
         mesh.position.z = d.z;
       });
     };
 
     /* ---- pointer --------------------------------------------------------- */
     const ptr = { x: 0, y: 0, sx: 0, sy: 0 };
+    const touch = window.matchMedia("(pointer: coarse)").matches;
     const onMove = (e: PointerEvent) => {
+      if (touch) return;
       ptr.x = (e.clientX / window.innerWidth - 0.5) * 2;
       ptr.y = (e.clientY / window.innerHeight - 0.5) * 2;
     };
 
     /* ---- loop ------------------------------------------------------------ */
-    let raf = 0, last = 0, visible = true;
+    let raf = 0, last = 0, visible = !document.hidden;
     let nextGlitch = 4, glitchLeft = 0;
     let nextLockGlitch = 4 + Math.random() * 3, lockGlitchLeft = 0;
 
     const update = (dt: number) => {
       time.value += dt;
       const t = time.value;
+      scroll.progress += (scroll.target - scroll.progress) * 0.08;
 
       // materialise
       const intro = introAt < 0 ? 0 : clamp01((t - introAt - 0.15) / 2.4);
@@ -518,9 +553,10 @@ export default function HeroScene() {
       const glitchOffset = lockGlitchLeft > 0 ? (Math.random() - 0.5) * 0.05 : 0;
       lockGlitchLeft = Math.max(0, lockGlitchLeft - dt);
       keyholeDotMaterial.uniforms.uStrength.value = 1 + (Math.sin(t * 2.6) + 1) * 0.3;
-      baseRingMaterials.forEach((material, index) => {
+      for (let index = 0; index < baseRingMaterials.length; index++) {
+        const material = baseRingMaterials[index];
         material.uniforms.uStrength.value = 0.22 + (Math.sin(t * 1.2 + index * 0.9) + 1) * 0.09;
-      });
+      }
       lock.rotation.x = ptr.sy * 0.1;
       lock.rotation.y = t * 0.25 - ptr.sx * 0.16;
       lock.position.x = ptr.sx * 0.12 + glitchOffset;
@@ -538,27 +574,37 @@ export default function HeroScene() {
       glitchLeft -= dt;
 
       // drifters
-      drifters.forEach(({ d, mesh, phase }) => {
+      for (let index = 0; index < drifters.length; index++) {
+        const { d, mesh, phase } = drifters[index];
         mesh.rotation.x += d.spin[0] * dt;
         mesh.rotation.y += d.spin[1] * dt;
         mesh.position.x = mesh.userData.bx + Math.sin(t * 0.35 + phase) * 0.18 + ptr.sx * (CAMERA_Z + d.z) * -0.03;
         mesh.position.y = mesh.userData.by + Math.cos(t * 0.3 + phase) * 0.22 + ptr.sy * (CAMERA_Z + d.z) * -0.022;
-      });
+      }
 
-      // camera parallax
-      camera.position.x += (ptr.sx * 0.7 - camera.position.x) * k;
-      camera.position.y += (0.5 - ptr.sy * 0.4 - camera.position.y) * k;
-      camera.lookAt(0, 0, 0);
+      // Scroll carries the camera through the same world; pointer movement stays subtle.
+      cameraPath.getPointAt(scroll.progress, cameraPoint);
+      cameraPath.getPointAt(Math.min(1, scroll.progress + 0.025), lookPoint);
+      camera.position.set(cameraPoint.x + (touch ? 0 : ptr.sx * 0.3), cameraPoint.y + (touch ? 0 : -ptr.sy * 0.3), cameraPoint.z);
+      camera.lookAt(lookPoint);
+      camera.rotation.z = Math.sin(scroll.progress * Math.PI * 2) * 0.012;
+      (scene.fog as THREE.Fog).color.setHex(fogTint);
     };
 
     const frame = (now: number) => {
+      if (!visible) return;
       raf = requestAnimationFrame(frame);
-      if (!visible) { last = now; return; }
       const dt = Math.min((now - last) / 1000 || 0.016, 0.05);
       last = now;
       update(dt);
       renderer.render(scene, camera);
     };
+    const onVisibility = () => {
+      visible = !document.hidden;
+      if (visible && !reduce && !raf) raf = requestAnimationFrame(frame);
+      if (!visible) { cancelAnimationFrame(raf); raf = 0; }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
 
     layout();
     const ro = new ResizeObserver(() => {
@@ -586,6 +632,9 @@ export default function HeroScene() {
       ro.disconnect();
       io?.disconnect();
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("scroll", updateScroll);
+      window.removeEventListener("resize", updateScroll);
+      document.removeEventListener("visibilitychange", onVisibility);
       scene.traverse((o) => {
         const m = o as THREE.Mesh;
         m.geometry?.dispose();
@@ -598,5 +647,5 @@ export default function HeroScene() {
     };
   }, []);
 
-  return <div ref={hostRef} aria-hidden className="pointer-events-none absolute inset-0" />;
+  return <div ref={hostRef} aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10" />;
 }
