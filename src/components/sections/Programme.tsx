@@ -149,7 +149,6 @@ export default function Programme() {
     <section id="program" className="programme-section">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-2xl">
-          <p className="about-eyebrow">THE RHYTHM OF THE WEEKEND</p>
           <h2 className="about-heading programme-title">Programme</h2>
           <div className="about-heading-rule" aria-hidden="true" />
           <p className="text-muted leading-relaxed mt-7">

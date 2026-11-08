@@ -14,13 +14,23 @@ export default function Loader() {
   const [pct, setPct] = useState(0);
 
   useEffect(() => {
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+    if (window.location.hash) {
+      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    }
+
     const root = document.documentElement;
     let seen = false;
     if (ONCE_PER_SESSION) { try { seen = sessionStorage.getItem(KEY) === "1"; } catch {} }
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (seen) {
       const id = setTimeout(() => setShow(false), 0);
-      return () => clearTimeout(id);
+      return () => {
+        clearTimeout(id);
+        window.history.scrollRestoration = previousScrollRestoration;
+      };
     }
 
     root.dataset.loading = "on";
@@ -62,6 +72,7 @@ export default function Loader() {
       window.removeEventListener("load", onLoad);
       cancelAnimationFrame(raf);
       timers.forEach(clearTimeout);
+      window.history.scrollRestoration = previousScrollRestoration;
     };
   }, []);
 
