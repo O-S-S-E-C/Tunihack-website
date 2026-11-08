@@ -26,7 +26,7 @@ const NAVIGATE = [
 
 const QUICK_LINKS = [
   { label: "Register Now", href: "#register" },
-  { label: "Previous Editions", href: "#editions" },
+  { label: "Previous Edition", href: "#previousedition" },
   { label: "Contact Us", href: `mailto:${OSSEC.email}` },
 ];
 

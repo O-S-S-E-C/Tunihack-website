@@ -463,6 +463,34 @@ body {
 .sponsors-cta { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 2rem; padding: 1.25rem 1.5rem; border: 1px solid rgb(34 211 238 / 18%); border-radius: 0.75rem; background: rgb(4 9 24 / 50%); }
 .sponsors-cta p { color: var(--foreground); font-family: var(--font-jetbrains), monospace; font-size: 0.82rem; letter-spacing: 0.08em; }
 
+/* ───────────── PREVIOUS EDITION GALLERY ───────────── */
+.gallery-section { background: var(--background); }
+.gallery-heading-wrap { max-width: 42rem; }
+.gallery-viewport { position: relative; height: 420px; margin-top: 2rem; overflow: hidden; mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent); }
+.gallery-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+.gallery-columns-mobile { display: none; }
+.gallery-column { display: flex; flex-direction: column; gap: 1rem; will-change: transform; }
+.gallery-is-visible .gallery-column-1, .gallery-is-visible .gallery-column-3 { animation: gallery-drift-up 30s linear infinite; }
+.gallery-is-visible .gallery-column-2 { animation: gallery-drift-down 36s linear infinite; }
+.gallery-is-visible .gallery-column-3 { animation-duration: 44s; }
+.gallery-viewport:hover .gallery-column { animation-play-state: paused; }
+.gallery-photo { width: 100%; overflow: hidden; border: 1px solid rgb(255 255 255 / 10%); border-radius: 0.5rem; background: #071126; }
+.gallery-photo img { display: block; width: 100%; height: auto; }
+@keyframes gallery-drift-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+@keyframes gallery-drift-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+@media (max-width: 767px) {
+  .gallery-viewport { height: 320px; }
+  .gallery-columns-desktop { display: none; }
+  .gallery-columns-mobile { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+  .gallery-column { gap: 0.7rem; }
+  .gallery-is-visible .gallery-column-1 { animation: gallery-drift-up 30s linear infinite; }
+  .gallery-is-visible .gallery-column-2 { animation: gallery-drift-down 36s linear infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-is-visible .gallery-column { animation: none; }
+  .gallery-viewport { overflow-y: auto; mask-image: none; -webkit-mask-image: none; }
+}
+
 @keyframes sponsors-edge-draw { to { stroke-dashoffset: 0; opacity: 0.85; } }
 @keyframes sponsors-mesh-draw { to { stroke-dashoffset: 0; } }
 @keyframes sponsors-node-visible { to { visibility: visible; } }
