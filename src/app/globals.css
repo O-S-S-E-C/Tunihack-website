@@ -576,12 +576,6 @@ body {
   opacity: calc(var(--p, 0) * 0.85);
 }
 
-.page-sheet {
-  border-top: 1px solid rgba(34, 211, 238, 0.35);
-  border-radius: 2rem 2rem 0 0;
-  box-shadow: 0 -24px 70px rgba(37, 99, 235, 0.22);
-}
-
 .hero-rise {
   opacity: 0;
   transform: translateY(14px);

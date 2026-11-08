@@ -106,7 +106,7 @@ void main() {
   float sweep = exp(-pow((vUv.y - (1.0 - fract(uTime * 0.12))) * 9.0, 2.0));
   float flick = 0.97 + 0.03 * sin(uTime * 47.0 + uPhase) + uGlitch * 0.12;
 
-  vec3 col = c.rgb * scan * flick * 1.4;
+  vec3 col = c.rgb * scan * flick;
   col += vec3(0.015, 0.055, 0.085) * c.a;
   col *= mix(vec3(1.0), vec3(0.45, 0.85, 1.25), uTint);
   col += vec3(0.2, 0.75, 1.0) * sweep * 0.2 * c.a;
@@ -161,6 +161,81 @@ type Drifter = {
   spin: [number, number];
 };
 
+function shieldGeometry() {
+  const shape = new THREE.Shape();
+  shape.moveTo(0, 1);
+  shape.lineTo(0.78, 0.68);
+  shape.lineTo(0.67, 0.02);
+  shape.quadraticCurveTo(0.48, -0.62, 0, -1);
+  shape.quadraticCurveTo(-0.48, -0.62, -0.67, 0.02);
+  shape.lineTo(-0.78, 0.68);
+  shape.closePath();
+  return new THREE.ExtrudeGeometry(shape, { depth: 0.12, bevelEnabled: false, curveSegments: 8 });
+}
+
+function padlockGeometry() {
+  const shape = new THREE.Shape();
+  shape.moveTo(-0.52, 0.18);
+  shape.lineTo(-0.52, 0.55);
+  shape.quadraticCurveTo(-0.52, 0.9, 0, 0.9);
+  shape.quadraticCurveTo(0.52, 0.9, 0.52, 0.55);
+  shape.lineTo(0.52, 0.18);
+  shape.lineTo(0.76, 0.18);
+  shape.lineTo(0.76, -0.78);
+  shape.lineTo(-0.76, -0.78);
+  shape.lineTo(-0.76, 0.18);
+  shape.closePath();
+  const shackle = new THREE.Path();
+  shackle.moveTo(-0.27, 0.18);
+  shackle.lineTo(-0.27, 0.55);
+  shackle.quadraticCurveTo(-0.27, 0.68, 0, 0.68);
+  shackle.quadraticCurveTo(0.27, 0.68, 0.27, 0.55);
+  shackle.lineTo(0.27, 0.18);
+  shackle.closePath();
+  shape.holes.push(shackle);
+  const keyhole = new THREE.Path();
+  keyhole.absellipse(0, -0.18, 0.09, 0.09, 0, Math.PI * 2, true, 0);
+  keyhole.moveTo(0.055, -0.22);
+  keyhole.lineTo(0.1, -0.52);
+  keyhole.lineTo(-0.1, -0.52);
+  keyhole.lineTo(-0.055, -0.22);
+  shape.holes.push(keyhole);
+  return new THREE.ExtrudeGeometry(shape, { depth: 0.12, bevelEnabled: false, curveSegments: 12 });
+}
+
+function skullGeometry() {
+  const shape = new THREE.Shape();
+  shape.moveTo(-0.68, -0.02);
+  shape.bezierCurveTo(-0.86, 0.72, -0.42, 1.08, 0, 1.08);
+  shape.bezierCurveTo(0.42, 1.08, 0.86, 0.72, 0.68, -0.02);
+  shape.lineTo(0.57, -0.36);
+  shape.lineTo(0.4, -0.82);
+  shape.lineTo(-0.4, -0.82);
+  shape.lineTo(-0.57, -0.36);
+  shape.closePath();
+  for (const x of [-0.3, 0.3]) {
+    const eye = new THREE.Path();
+    eye.absellipse(x, 0.28, 0.2, 0.25, 0, Math.PI * 2, false, 0);
+    shape.holes.push(eye);
+  }
+  const nose = new THREE.Path();
+  nose.moveTo(0, -0.08);
+  nose.lineTo(0.12, -0.32);
+  nose.lineTo(-0.12, -0.32);
+  nose.closePath();
+  shape.holes.push(nose);
+  for (const x of [-0.22, 0, 0.22]) {
+    const tooth = new THREE.Path();
+    tooth.moveTo(x - 0.035, -0.52);
+    tooth.lineTo(x + 0.035, -0.52);
+    tooth.lineTo(x + 0.035, -0.78);
+    tooth.lineTo(x - 0.035, -0.78);
+    tooth.closePath();
+    shape.holes.push(tooth);
+  }
+  return new THREE.ExtrudeGeometry(shape, { depth: 0.12, bevelEnabled: false, curveSegments: 16 });
+}
+
 const DRIFTERS: Drifter[] = [
   { geo: () => new THREE.IcosahedronGeometry(1, 1), fx: 0.8, fy: 0.58, z: -2, size: 0.5, color: SECONDARY, spin: [0.22, 0.31] },
   { geo: () => new THREE.OctahedronGeometry(1, 0), fx: 0.74, fy: -0.8, z: -4, size: 0.5, color: PRIMARY, spin: [0.3, 0.18] },
@@ -168,6 +243,12 @@ const DRIFTERS: Drifter[] = [
   { geo: () => new THREE.BoxGeometry(1, 1, 1), fx: 0.22, fy: 0.8, z: -6, size: 0.55, color: PRIMARY, spin: [0.25, 0.2] },
   { geo: () => new THREE.TorusGeometry(1, 0.32, 12, 28), fx: -0.9, fy: 0.74, z: -8, size: 0.6, color: PRIMARY, spin: [0.15, 0.22] },
   { geo: () => new THREE.DodecahedronGeometry(1, 0), fx: -0.62, fy: -0.86, z: -10, size: 0.6, color: SECONDARY, spin: [0.2, 0.14] },
+];
+
+const CYBER_DRIFTERS: Drifter[] = [
+  { geo: shieldGeometry, fx: 0.68, fy: 0.52, z: -16, size: 0.56, color: SECONDARY, spin: [0.08, 0.12] },
+  { geo: padlockGeometry, fx: -0.72, fy: -0.48, z: -28, size: 0.38, color: PRIMARY, spin: [0.06, 0.1] },
+  { geo: skullGeometry, fx: 0.42, fy: -0.66, z: -38, size: 0.42, color: SECONDARY, spin: [0.06, 0.1] },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -369,22 +450,29 @@ export default function HeroScene() {
     });
 
     /* ---- drifters -------------------------------------------------------- */
-    const sourceGeometries = DRIFTERS.map((d) => d.geo());
+    const allTemplates = [...DRIFTERS, ...CYBER_DRIFTERS];
+    const sourceGeometries = allTemplates.map((d) => d.geo());
     const edgeGeometries = sourceGeometries.map((geo) => new THREE.EdgesGeometry(geo, 1));
     const drifterMaterials = new Map<number, THREE.ShaderMaterial>();
     const isSmallScreen = window.innerWidth < 700;
     const drifterTemplates = isSmallScreen ? DRIFTERS.filter((d) => d.size > 0.42) : DRIFTERS;
-    const drifterCount = drifterTemplates.length * 5;
-    const drifters = Array.from({ length: drifterCount }, (_, i) => {
+    const depthPlacements = Array.from({ length: drifterTemplates.length * 5 }, (_, i) => {
       const template = drifterTemplates[i % drifterTemplates.length];
       const depth = Math.floor(i / drifterTemplates.length);
-      const d = { ...template, z: -2 - depth * 9 - (i % 3) * 1.4, fx: ((template.fx + depth * 0.31 + 1) % 2) - 1, fy: ((template.fy + depth * 0.43 + 1) % 2) - 1 };
+      return { template, depth, phase: i };
+    });
+    const cyberPlacements = CYBER_DRIFTERS.map((template, i) => ({ template, depth: 0, phase: depthPlacements.length + i }));
+    const drifters = [...depthPlacements, ...cyberPlacements].map(({ template, depth, phase }) => {
+      const d = depth === 0 && DRIFTERS.includes(template)
+        ? { ...template }
+        : { ...template, z: DRIFTERS.includes(template) ? template.z - depth * 7.5 : template.z, fx: DRIFTERS.includes(template) ? ((template.fx + depth * 0.31 + 1) % 2) - 1 : template.fx, fy: DRIFTERS.includes(template) ? ((template.fy + depth * 0.43 + 1) % 2) - 1 : template.fy };
       let material = drifterMaterials.get(d.color);
       if (!material) { material = holo(bgU, d.color, 0.9, true); drifterMaterials.set(d.color, material); }
-      const mesh = new THREE.LineSegments(edgeGeometries[i % edgeGeometries.length], material);
+      const templateIndex = allTemplates.indexOf(template);
+      const mesh = new THREE.LineSegments(edgeGeometries[templateIndex], material);
       mesh.scale.setScalar(d.size);
       scene.add(mesh);
-      return { d, mesh, phase: i * 1.7 };
+      return { d, mesh, phase: phase * 1.7 };
     });
     sourceGeometries.forEach((geo) => geo.dispose());
 
