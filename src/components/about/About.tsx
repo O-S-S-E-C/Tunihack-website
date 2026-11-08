@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import EventRow from "@/components/about/EventRow";
 import { useInView } from "@/hooks/useInView";
 import Programme from "@/components/sections/Programme";
+import Sponsors from "@/components/sections/Sponsors";
 import {
   PITCHHACK_TERMINAL_LINES,
   PITCHHACK_TERMINAL_TITLE,
@@ -93,6 +94,7 @@ export default function About() {
         </div>
 
         <Programme />
+        <Sponsors />
       </div>
     </section>
   );

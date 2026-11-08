@@ -6,9 +6,9 @@ const LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'program', label: 'Programme' },
+  { id: 'sponsors', label: 'Sponsors' },
   { id: 'speakers', label: 'Speakers' },
   { id: 'board', label: 'Board' },
-  { id: 'sponsors', label: 'Sponsors' },
 ];
 
 const SCROLL_THRESHOLD = 50;
