@@ -40,7 +40,6 @@ export default function Loader() {
     let loaded = document.readyState === "complete";
     let done = false;
     const timers: ReturnType<typeof setTimeout>[] = [];
-    let maxTimer: ReturnType<typeof setTimeout> | undefined;
     let raf = 0;
 
     const finish = () => {
@@ -69,8 +68,7 @@ export default function Loader() {
       if (!done) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    maxTimer = setTimeout(finish, MAX_MS);
-
+    const maxTimer: ReturnType<typeof setTimeout> = setTimeout(finish, MAX_MS);
     return () => {
       window.removeEventListener("load", onLoad);
       cancelAnimationFrame(raf);

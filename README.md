@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TuniHack 12.0 Website
 
-## Getting Started
+The official website for TuniHack 12.0, Tunisia's national hackathon on cybersecurity and artificial intelligence, organized by OSSEC at ENSI.
 
-First, run the development server:
+## Development
+
+Install dependencies and start the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a production build with:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Adding A Sponsor
 
-To learn more about Next.js, take a look at the following resources:
+1. Put the sponsor logo in `public/sponsors/`. Use a compact PNG or SVG with a transparent background when possible.
+2. Add one entry to `SPONSORS` in `src/data/sponsors.ts`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```ts
+{
+	name: "Example Sponsor",
+	tier: "gold",
+	logo: "/sponsors/example-sponsor.png",
+	url: "https://example.com",
+	invert: false,
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Available tiers are `platinum`, `gold`, and `partner`. The graph calculates the sponsor position and connections automatically. `logo`, `url`, and `invert` are optional; when no logo is available, the graph displays the sponsor initials.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+After adding a sponsor, run `npm run build` to check the data and layout compile correctly.
