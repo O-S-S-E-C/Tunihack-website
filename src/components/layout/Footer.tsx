@@ -5,7 +5,7 @@ const OSSEC = {
   name: "OSSEC",
   description:
     "OSSEC the Open Source Security club at ENSI. We organise TuniHack, Tunisia's national hackathon on cybersecurity and artificial intelligence.",
-  email: "contact@ossec.tn",
+  email: "ossec@ensi-uma.tn",
   location: "ENSI, Tunisia",
   socials: [
     { name: "Facebook", href: "https://www.facebook.com/tunihackENSIS" },
