@@ -70,10 +70,23 @@ export default function DecryptText({
   );
 
   useLayoutEffect(() => {
+    const start = () => {
+      if (document.visibilityState === "visible" && document.documentElement.dataset.loading !== "on") {
+        run(delay);
+      }
+    };
+    const onPageShow = () => start();
+    const onVisibilityChange = () => start();
+
+    window.addEventListener("pageshow", onPageShow);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
     const loading = document.documentElement.dataset.loading === "on";
     if (!loading) {
-      run(delay);
+      start();
       return () => {
+        window.removeEventListener("pageshow", onPageShow);
+        document.removeEventListener("visibilitychange", onVisibilityChange);
         cancelAnimationFrame(raf.current);
         clearTimeout(timer.current);
       };
@@ -82,13 +95,15 @@ export default function DecryptText({
     const observer = new MutationObserver(() => {
       if (document.documentElement.dataset.loading !== "on") {
         observer.disconnect();
-        run(delay);
+        start();
       }
     });
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-loading"] });
 
     return () => {
       observer.disconnect();
+      window.removeEventListener("pageshow", onPageShow);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       cancelAnimationFrame(raf.current);
       clearTimeout(timer.current);
     };

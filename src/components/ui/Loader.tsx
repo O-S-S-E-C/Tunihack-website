@@ -40,11 +40,13 @@ export default function Loader() {
     let loaded = document.readyState === "complete";
     let done = false;
     const timers: ReturnType<typeof setTimeout>[] = [];
+    let maxTimer: ReturnType<typeof setTimeout> | undefined;
     let raf = 0;
 
     const finish = () => {
       if (done) return;
       done = true;
+      if (maxTimer) clearTimeout(maxTimer);
       cancelAnimationFrame(raf);
       setPct(100);
       timers.push(setTimeout(() => {
@@ -67,10 +69,12 @@ export default function Loader() {
       if (!done) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
+    maxTimer = setTimeout(finish, MAX_MS);
 
     return () => {
       window.removeEventListener("load", onLoad);
       cancelAnimationFrame(raf);
+      if (maxTimer) clearTimeout(maxTimer);
       timers.forEach(clearTimeout);
       window.history.scrollRestoration = previousScrollRestoration;
     };

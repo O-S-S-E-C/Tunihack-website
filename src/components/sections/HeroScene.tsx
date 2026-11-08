@@ -314,12 +314,37 @@ export default function HeroScene() {
 
     let disposed = false;
     let introAt = reduce ? 0 : -1;
+    let introObserver: MutationObserver | undefined;
+    const isLoaderExiting = () => document.documentElement.dataset.loading !== "on";
+    const beginIntro = () => {
+      if (!disposed && introAt < 0) introAt = time.value;
+    };
+    const waitForLoader = () => {
+      if (isLoaderExiting()) {
+        beginIntro();
+        return;
+      }
+
+      introObserver = new MutationObserver(() => {
+        if (isLoaderExiting()) {
+          introObserver?.disconnect();
+          introObserver = undefined;
+          beginIntro();
+        }
+      });
+      introObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["data-loading"],
+        childList: true,
+        subtree: true,
+      });
+    };
     new THREE.TextureLoader().load(SPRITE_URL, (tex) => {
       if (disposed) { tex.dispose(); return; }
       tex.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
       texU.value = tex;
       sprites.forEach((m) => (m.visible = true));
-      introAt = time.value;
+      if (!reduce) waitForLoader();
       if (reduce) renderer.render(scene, camera);
     });
 
@@ -555,6 +580,7 @@ export default function HeroScene() {
 
     return () => {
       disposed = true;
+      introObserver?.disconnect();
       texU.value?.dispose();
       cancelAnimationFrame(raf);
       ro.disconnect();
