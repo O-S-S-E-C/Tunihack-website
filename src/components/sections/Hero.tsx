@@ -53,34 +53,10 @@ const Hero = () => {
       <div aria-hidden className="hero-glow pointer-events-none absolute inset-0" />
       <HeroScene />
 
-      {/* Diagonal text panel (desktop) */}
-      <svg
-        aria-hidden
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        className="pointer-events-none absolute inset-0 z-[1] hidden h-full w-full md:block"
-      >
-        <defs>
-          <linearGradient id="hero-panel-fill" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="#01030a" stopOpacity="0.94" />
-            <stop offset="1" stopColor="#01030a" stopOpacity="0.5" />
-          </linearGradient>
-          <linearGradient id="hero-panel-edge" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#22d3ee" stopOpacity="0" />
-            <stop offset="0.45" stopColor="#22d3ee" stopOpacity="0.8" />
-            <stop offset="1" stopColor="#2563eb" stopOpacity="0.9" />
-          </linearGradient>
-        </defs>
-        <polygon points="0,0 0,100 64,100" fill="url(#hero-panel-fill)" />
-        <line x1="0" y1="0" x2="64" y2="100" stroke="url(#hero-panel-edge)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
-      </svg>
-      {/* Legibility scrim (mobile) */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-[1] bg-linear-to-b from-black/85 via-black/40 to-transparent md:hidden" />
-
       <div className="hero-inner relative z-10 flex h-full flex-col justify-start pb-12 pl-[clamp(1.5rem,5vw,5rem)] pr-6 pt-24 md:justify-end md:pb-14 md:pt-28">
         <h1
           aria-label="TuniHack 12.0"
-          className="select-none font-mono font-bold leading-[0.95] tracking-tight text-foreground [--step:clamp(0.75rem,4vw,4.5rem)] [font-size:clamp(2.5rem,min(7vw,11vh),6.25rem)]"
+          className="hero-title select-none font-sans font-black leading-[0.95] tracking-[-0.055em] [--step:clamp(0.75rem,4vw,4.5rem)] [font-size:clamp(2.5rem,min(7vw,11vh),6.25rem)]"
         >
           <span className="block">
             <DecryptText text="Tuni" delay={300} duration={900} />
@@ -90,7 +66,7 @@ const Hero = () => {
               text="Hack"
               delay={650}
               duration={900}
-              className="inline-block bg-linear-to-r from-[#60a5fa] to-secondary bg-clip-text text-transparent"
+              className="inline-block text-[#60a5fa]"
             />
           </span>
           <span className="block" style={{ marginLeft: 'calc(var(--step) * 2)' }}>
@@ -103,7 +79,7 @@ const Hero = () => {
           </span>
         </h1>
 
-        <div className="hero-rise mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-sm text-foreground/80" style={{ animationDelay: '0.9s' }}>
+        <div className="hero-copy hero-rise mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-sm text-foreground/90" style={{ animationDelay: '2.1s' }}>
           <span className="flex items-center gap-2">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-secondary" aria-hidden>
               <path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z" /><circle cx="12" cy="9.5" r="2.5" />
@@ -118,15 +94,15 @@ const Hero = () => {
           </span>
         </div>
 
-        <p className="hero-rise mt-4 min-h-7 max-w-md text-base leading-relaxed text-muted md:text-lg" style={{ animationDelay: '1.0s' }}>
+        <p className="hero-copy hero-rise mt-4 min-h-7 max-w-md text-base leading-relaxed text-[#d7e6ff] md:text-lg" style={{ animationDelay: '2.2s' }}>
           <DynamicTagline />
         </p>
 
-        <p className="hero-rise mt-1 font-mono text-xs uppercase tracking-[0.2em] text-muted/70" style={{ animationDelay: '1.05s' }}>
+        <p className="hero-copy hero-rise mt-1 font-mono text-xs uppercase tracking-[0.2em] text-[#bed0ee]" style={{ animationDelay: '2.3s' }}>
           Cybersecurity × Artificial Intelligence
         </p>
 
-        <div className="hero-rise mt-8 flex flex-wrap gap-4" style={{ animationDelay: '1.15s' }}>
+        <div className="hero-rise mt-8 flex flex-wrap gap-4" style={{ animationDelay: '2.45s' }}>
           <a href="#register" className="lime-button rounded-md px-6 py-3 text-sm font-semibold">
             Register Now →
           </a>

@@ -37,6 +37,7 @@ export default function DecryptText({
       );
       let lastSwap = 0;
       let current = chars.map(() => GLYPHS[Math.floor(Math.random() * GLYPHS.length)]);
+      setOut(current.join(""));
 
       timer.current = setTimeout(() => {
         const t0 = performance.now();
@@ -69,8 +70,25 @@ export default function DecryptText({
   );
 
   useLayoutEffect(() => {
-    run(delay);
+    const loading = document.documentElement.dataset.loading === "on";
+    if (!loading) {
+      run(delay);
+      return () => {
+        cancelAnimationFrame(raf.current);
+        clearTimeout(timer.current);
+      };
+    }
+
+    const observer = new MutationObserver(() => {
+      if (document.documentElement.dataset.loading !== "on") {
+        observer.disconnect();
+        run(delay);
+      }
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-loading"] });
+
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(raf.current);
       clearTimeout(timer.current);
     };

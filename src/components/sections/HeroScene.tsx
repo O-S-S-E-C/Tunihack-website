@@ -58,7 +58,7 @@ void main() {
   if (uLine < 0.5) {
     fres = pow(1.0 - abs(dot(normalize(vN), normalize(vV))), 2.0);
   }
-  float scan = 0.68 + 0.32 * sin(ly * 70.0 - uTime * 4.0);
+  float scan = 0.85 + 0.15 * sin(ly * 80.0 - uTime * 0.3);
   float sweepY = mix(-2.1, 2.1, fract(uTime * 0.16));
   float sweep = exp(-pow((ly - sweepY) * 3.2, 2.0));
   float flick = 0.95 + 0.05 * sin(uTime * 53.0);
@@ -326,12 +326,94 @@ export default function HeroScene() {
     /* ---- drifters -------------------------------------------------------- */
     const drifters = DRIFTERS.map((d, i) => {
       const geo = d.geo();
-      const mesh = new THREE.LineSegments(new THREE.EdgesGeometry(geo, 1), holo(bgU, d.color, 0.9, true));
+      const wire = new THREE.EdgesGeometry(geo, 1);
+      const mesh = new THREE.LineSegments(wire, holo(bgU, d.color, 0.9, true));
       mesh.scale.setScalar(d.size);
       scene.add(mesh);
       geo.dispose();
       return { d, mesh, phase: i * 1.7 };
     });
+
+    /* ---- central 3D lock hologram -------------------------------------- */
+    const lock = new THREE.Group();
+    const lockUniforms: Uni = { ...bgU, uGlitch: { value: 0 } };
+    const lockBodyShape = new THREE.Shape();
+    const lockWidth = 1.4;
+    const lockHeight = 1.1;
+    const corner = 0.18;
+    const halfW = lockWidth / 2;
+    const lockHalfHeight = lockHeight / 2;
+    lockBodyShape.moveTo(-halfW + corner, -lockHalfHeight);
+    lockBodyShape.lineTo(halfW - corner, -lockHalfHeight);
+    lockBodyShape.quadraticCurveTo(halfW, -lockHalfHeight, halfW, -lockHalfHeight + corner);
+    lockBodyShape.lineTo(halfW, lockHalfHeight - corner);
+    lockBodyShape.quadraticCurveTo(halfW, lockHalfHeight, halfW - corner, lockHalfHeight);
+    lockBodyShape.lineTo(-halfW + corner, lockHalfHeight);
+    lockBodyShape.quadraticCurveTo(-halfW, lockHalfHeight, -halfW, lockHalfHeight - corner);
+    lockBodyShape.lineTo(-halfW, -lockHalfHeight + corner);
+    lockBodyShape.quadraticCurveTo(-halfW, -lockHalfHeight, -halfW + corner, -lockHalfHeight);
+
+    // The keyhole is cut through the extruded body, not painted onto its face.
+    const keyhole = new THREE.Path();
+    keyhole.moveTo(-0.08, -0.34);
+    keyhole.lineTo(-0.055, -0.11);
+    keyhole.bezierCurveTo(-0.21, -0.015, -0.15, 0.2, 0, 0.2);
+    keyhole.bezierCurveTo(0.15, 0.2, 0.21, -0.015, 0.055, -0.11);
+    keyhole.lineTo(0.08, -0.34);
+    keyhole.closePath();
+    lockBodyShape.holes.push(keyhole);
+
+    const lockBodyGeometry = new THREE.ExtrudeGeometry(lockBodyShape, {
+      depth: 0.45,
+      bevelEnabled: true,
+      bevelSegments: 3,
+      steps: 1,
+      bevelSize: 0.04,
+      bevelThickness: 0.04,
+      curveSegments: 24,
+    });
+    lockBodyGeometry.translate(0, -0.45, -0.225);
+    const bodyFill = holo(lockUniforms, PRIMARY, 0.08);
+    lock.add(new THREE.Mesh(lockBodyGeometry, bodyFill));
+    lock.add(new THREE.LineSegments(new THREE.EdgesGeometry(lockBodyGeometry, 20), holo(lockUniforms, SECONDARY, 1.2, true)));
+
+    // The straight legs pass 0.12 units into the body; the centerline stays on its Z plane.
+    const shacklePath = new THREE.CurvePath<THREE.Vector3>();
+    shacklePath.add(new THREE.LineCurve3(new THREE.Vector3(-0.38, -0.02, 0), new THREE.Vector3(-0.38, 0.43, 0)));
+    const archPoints = Array.from({ length: 25 }, (_, i) => {
+      const angle = Math.PI - (i / 24) * Math.PI;
+      return new THREE.Vector3(Math.cos(angle) * 0.38, 0.43 + Math.sin(angle) * 0.38, 0);
+    });
+    shacklePath.add(new THREE.CatmullRomCurve3(archPoints));
+    shacklePath.add(new THREE.LineCurve3(new THREE.Vector3(0.38, 0.43, 0), new THREE.Vector3(0.38, -0.02, 0)));
+    const shackleGeometry = new THREE.TubeGeometry(shacklePath, 48, 0.07, 12, false);
+    lock.add(new THREE.Mesh(shackleGeometry, holo(lockUniforms, PRIMARY, 0.08)));
+    lock.add(new THREE.LineSegments(new THREE.EdgesGeometry(shackleGeometry, 20), holo(lockUniforms, SECONDARY, 1.2, true)));
+
+    // Trace the actual cutout on the front face and add its pulsing indicator.
+    const holePoints = keyhole.getPoints(32);
+    const holeOutlineGeometry = new THREE.BufferGeometry().setFromPoints(holePoints);
+    holeOutlineGeometry.translate(0, -0.45, 0.27);
+    lock.add(new THREE.LineLoop(holeOutlineGeometry, holo(lockUniforms, SECONDARY, 0.9, true)));
+    const keyholeDotMaterial = holo(lockUniforms, SECONDARY, 1.0);
+    const keyholeDot = new THREE.Mesh(new THREE.SphereGeometry(0.03, 12, 8), keyholeDotMaterial);
+    keyholeDot.position.set(0, -0.42, 0.28);
+    lock.add(keyholeDot);
+
+    // Projector base: two thin, pulsing rings below the lock.
+    const baseRingMaterials: THREE.ShaderMaterial[] = [];
+    for (const [index, radius] of [0.9, 1.1].entries()) {
+      const material = holo(lockUniforms, SECONDARY, 0.3, true);
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(radius, 0.008, 4, 64), material);
+      ring.rotation.x = Math.PI / 2;
+      ring.position.y = -1.08;
+      lock.add(ring);
+      baseRingMaterials.push(material);
+      ring.userData.pulsePhase = index * 0.9;
+    }
+    lock.scale.setScalar(0.78);
+    lock.position.set(0, 0.18, -1.6);
+    scene.add(lock);
 
     /* ---- layout ---------------------------------------------------------- */
     let w = 1, h = 1, aspect = 1;
@@ -379,6 +461,7 @@ export default function HeroScene() {
     /* ---- loop ------------------------------------------------------------ */
     let raf = 0, last = 0, visible = true;
     let nextGlitch = 4, glitchLeft = 0;
+    let nextLockGlitch = 4 + Math.random() * 3, lockGlitchLeft = 0;
 
     const update = (dt: number) => {
       time.value += dt;
@@ -398,7 +481,27 @@ export default function HeroScene() {
       penguin.position.set(baseX, baseY + Math.sin(t * 1.1) * 0.1 * baseScale, 0);
       penguinU.uOriginY.value = penguin.position.y;
       penguin.rotation.y = ptr.sx * 0.24 + Math.sin(t * 0.45) * 0.06;
-      penguin.rotation.x = ptr.sy * 0.05;
+      penguin.rotation.x = ptr.sy * 0.1;
+      if (!reduce) {
+        nextLockGlitch -= dt;
+        if (nextLockGlitch <= 0) {
+          lockGlitchLeft = 0.05;
+          nextLockGlitch = 4 + Math.random() * 3;
+        }
+      }
+      lockUniforms.uGlitch.value = lockGlitchLeft > 0 ? 0.12 : 0;
+      const glitchOffset = lockGlitchLeft > 0 ? (Math.random() - 0.5) * 0.05 : 0;
+      lockGlitchLeft = Math.max(0, lockGlitchLeft - dt);
+      keyholeDotMaterial.uniforms.uStrength.value = 1 + (Math.sin(t * 2.6) + 1) * 0.3;
+      baseRingMaterials.forEach((material, index) => {
+        material.uniforms.uStrength.value = 0.22 + (Math.sin(t * 1.2 + index * 0.9) + 1) * 0.09;
+      });
+      lock.rotation.x = ptr.sy * 0.1;
+      lock.rotation.y = t * 0.25 - ptr.sx * 0.16;
+      lock.position.x = ptr.sx * 0.12 + glitchOffset;
+      lock.position.y = 0.18 + Math.sin(t) * 0.08 - ptr.sy * 0.05;
+      stars.position.x = -ptr.sx * 0.28;
+      stars.position.y = ptr.sy * 0.18;
 
       // occasional glitch
       nextGlitch -= dt;
@@ -413,8 +516,8 @@ export default function HeroScene() {
       drifters.forEach(({ d, mesh, phase }) => {
         mesh.rotation.x += d.spin[0] * dt;
         mesh.rotation.y += d.spin[1] * dt;
-        mesh.position.x = mesh.userData.bx + Math.sin(t * 0.35 + phase) * 0.18 + ptr.sx * (CAMERA_Z + d.z) * -0.012;
-        mesh.position.y = mesh.userData.by + Math.cos(t * 0.3 + phase) * 0.22;
+        mesh.position.x = mesh.userData.bx + Math.sin(t * 0.35 + phase) * 0.18 + ptr.sx * (CAMERA_Z + d.z) * -0.03;
+        mesh.position.y = mesh.userData.by + Math.cos(t * 0.3 + phase) * 0.22 + ptr.sy * (CAMERA_Z + d.z) * -0.022;
       });
 
       // camera parallax

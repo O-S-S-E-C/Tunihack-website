@@ -5,14 +5,6 @@ const memories = [
   ['1', 'shared future'],
 ];
 
-const program = [
-  ['09:00', 'Doors open', 'Check in, coffee, and team forming'],
-  ['11:00', 'Opening ceremony', 'The challenge is on'],
-  ['14:00', 'Workshops', 'Learn from people in the field'],
-  ['20:00', 'Night shift', 'Keep building, keep surprising us'],
-  ['10:00', 'Demo day', 'Show the room what you made'],
-];
-
 const speakers = [
   ['01', 'Coming soon', 'Builders, founders, and mentors'],
   ['02', 'Coming soon', 'The people behind the ideas'],
@@ -36,24 +28,6 @@ export default function EventSections() {
               <div key={label} className="bg-[#040918] p-7 md:p-10">
                 <strong className="block text-4xl md:text-6xl text-primary tracking-[-0.08em]">{value}</strong>
                 <span className="text-xs uppercase tracking-[0.18em] text-muted">{label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="program" className="px-6 md:px-16 py-28">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.7fr_1.3fr] gap-14">
-          <div>
-            <p className="section-kicker mb-5">The rhythm of the weekend</p>
-            <h2 className="text-5xl md:text-7xl font-black tracking-[-0.08em] uppercase">Program<span className="text-secondary">.</span></h2>
-            <p className="text-muted leading-relaxed mt-7 max-w-sm">A carefully chaotic sequence of ideas, conversations, focused work, and moments worth remembering.</p>
-          </div>
-          <div className="border-t border-secondary/60">
-            {program.map(([time, title, detail]) => (
-              <div key={time} className="grid grid-cols-[5rem_1fr] md:grid-cols-[7rem_1fr] gap-5 py-6 border-b border-white/15">
-                <span className="text-secondary text-sm">{time}</span>
-                <div><h3 className="text-xl uppercase tracking-wide">{title}</h3><p className="text-sm text-muted mt-2">{detail}</p></div>
               </div>
             ))}
           </div>
