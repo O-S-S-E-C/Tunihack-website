@@ -410,7 +410,7 @@ body {
 /* ───────────── SPONSORS NETWORK ───────────── */
 .sponsors-section { margin-top: 6rem; padding-top: 5rem; border-top: 1px solid rgb(34 211 238 / 22%); }
 .sponsors-heading-wrap { max-width: 42rem; }
-.sponsors-graph-wrap { position: relative; isolation: isolate; margin-top: 3rem; min-height: 24rem; overflow: hidden; border: 1px solid rgb(34 211 238 / 18%); border-radius: 1rem; background: radial-gradient(ellipse at 50% 48%, color-mix(in srgb, var(--sponsor-blue) 12%, transparent), transparent 44%), var(--sponsor-background); box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%), 0 18px 50px rgb(2 8 24 / 28%); }
+.sponsors-graph-wrap { position: relative; isolation: isolate; margin-top: 3rem; min-height: 0; overflow: hidden; border: 1px solid rgb(34 211 238 / 18%); border-radius: 1rem; background: radial-gradient(ellipse at 50% 48%, color-mix(in srgb, var(--sponsor-blue) 12%, transparent), transparent 44%), var(--sponsor-background); box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%), 0 18px 50px rgb(2 8 24 / 28%); }
 .sponsors-dot-grid { position: absolute; z-index: 0; inset: 0; background-image: radial-gradient(circle, rgb(255 255 255 / 14%) 1px, transparent 1px); background-size: 28px 28px; }
 .sponsors-graph-desktop, .sponsors-graph-mobile { position: relative; z-index: 1; }
 .sponsors-graph-mobile { display: none; }
@@ -428,10 +428,8 @@ body {
 .sponsors-hub { transform-box: fill-box; transform-origin: center; }
 .sponsors-hub-ring { fill: var(--sponsor-node-fill); stroke: var(--sponsor-cyan); stroke-width: 1.5; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 9px rgb(34 211 238 / 45%)); }
 .sponsors-visible .sponsors-hub-ring { animation: sponsors-ring-draw 650ms ease-out 250ms forwards; }
-.sponsors-hub-logo { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.sponsors-hub-logo { opacity: 0; clip-path: circle(50%); transform-box: fill-box; transform-origin: center; }
 .sponsors-visible .sponsors-hub-logo { animation: sponsors-hub-emerge 550ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
-.sponsors-hub-caption { fill: var(--foreground); font-family: var(--font-jetbrains), monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; opacity: 0; }
-.sponsors-visible .sponsors-hub-caption { animation: sponsors-fade-in 300ms ease 700ms forwards; }
 .sponsors-sonar { fill: none; stroke: var(--sponsor-cyan); stroke-width: 1.5; opacity: 0; transform-box: fill-box; transform-origin: center; }
 .sponsors-visible .sponsors-sonar-one { animation: sponsors-sonar 850ms ease-out 900ms 1; }
 .sponsors-visible .sponsors-sonar-two { animation: sponsors-sonar 850ms ease-out 1100ms 1; }
@@ -447,7 +445,7 @@ body {
 .sponsors-node-float { fill: var(--sponsor-node-fill); stroke: var(--sponsor-cyan); stroke-width: 1.5; transform-box: fill-box; transform-origin: center; }
 .sponsors-visible .sponsors-node-float { animation: sponsors-float var(--float-duration) ease-in-out calc(var(--arrive) + 450ms + var(--float-delay)) infinite; }
 .sponsors-offscreen .sponsors-node-float { animation-play-state: paused; }
-.sponsors-node-logo { opacity: 0; pointer-events: none; }
+.sponsors-node-logo { opacity: 0; clip-path: circle(50%); pointer-events: none; }
 .sponsors-visible .sponsors-node-logo { animation: sponsors-fade-in 250ms ease calc(var(--arrive) + 250ms) forwards; }
 .sponsors-node-logo-invert { filter: grayscale(1) brightness(0) invert(1); }
 .sponsors-node-active .sponsors-node-ring { stroke-width: 2; filter: drop-shadow(0 0 5px var(--sponsor-cyan)); }
@@ -462,9 +460,6 @@ body {
 .sponsors-tooltip text { fill: var(--foreground); font-family: var(--font-jetbrains), monospace; font-size: 10px; letter-spacing: 0.04em; }
 .sponsors-online-flash { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse at center, rgb(34 211 238 / 18%), transparent 52%); opacity: 0; }
 .sponsors-visible .sponsors-online-flash { animation: sponsors-online-flash 600ms ease-out calc(var(--mesh-start) + 600ms) both; }
-.sponsors-replay { position: absolute; right: 1rem; bottom: 0.85rem; z-index: 3; padding: 0.45rem 0.65rem; border: 1px solid rgb(34 211 238 / 38%); border-radius: 0.3rem; background: rgb(4 9 24 / 86%); color: var(--sponsor-cyan); font: 11px var(--font-jetbrains), monospace; letter-spacing: 0.08em; transition: border-color 160ms ease, background 160ms ease; }
-.sponsors-replay:hover, .sponsors-replay:focus-visible { border-color: var(--sponsor-cyan); background: rgb(34 211 238 / 10%); outline: 2px solid var(--sponsor-cyan); outline-offset: 2px; }
-.sponsors-replay:disabled { visibility: hidden; }
 .sponsors-cta { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 2rem; padding: 1.25rem 1.5rem; border: 1px solid rgb(34 211 238 / 18%); border-radius: 0.75rem; background: rgb(4 9 24 / 50%); }
 .sponsors-cta p { color: var(--foreground); font-family: var(--font-jetbrains), monospace; font-size: 0.82rem; letter-spacing: 0.08em; }
 
@@ -482,7 +477,6 @@ body {
 
 @media (max-width: 767px) {
   .sponsors-section { margin-top: 4rem; padding-top: 3.5rem; }
-  .sponsors-graph-wrap { min-height: 38rem; }
   .sponsors-graph-desktop { display: none; }
   .sponsors-graph-mobile { display: block; padding: 0.75rem; }
   .sponsors-svg-mobile { width: min(100%, 32rem); margin: 0 auto; }
@@ -492,12 +486,11 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .sponsors-svg-content { opacity: 1 !important; }
-  .sponsors-hub-logo, .sponsors-hub-caption, .sponsors-hub-ring, .sponsors-node-pop, .sponsors-node-ring, .sponsors-node-logo { opacity: 1 !important; transform: none !important; animation: none !important; stroke-dashoffset: 0 !important; }
+  .sponsors-hub-logo, .sponsors-hub-ring, .sponsors-node-pop, .sponsors-node-ring, .sponsors-node-logo { opacity: 1 !important; transform: none !important; animation: none !important; stroke-dashoffset: 0 !important; }
   .sponsors-sonar, .sponsors-node-ripple, .sponsors-signal-head, .sponsors-packet, .sponsors-online-flash { display: none !important; }
   .sponsors-node { visibility: visible !important; }
   .sponsors-edge { stroke-dashoffset: 0 !important; opacity: 0.5 !important; animation: none !important; }
   .sponsors-node-body { transform: none !important; }
-  .sponsors-replay { display: none; }
 }
 
 .starfield {

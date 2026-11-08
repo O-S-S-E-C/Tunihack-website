@@ -85,7 +85,7 @@ function makePath(start: Point, end: Point, startRadius: number, endRadius: numb
 function buildLayout(sponsors: Sponsor[], mode: GraphMode) {
   const mobile = mode === "mobile";
   const width = mobile ? 600 : 1000;
-  const height = mobile ? 900 : 640;
+  const height = mobile ? 650 : 500;
   const center = { x: width / 2, y: height / 2 };
   const hubRadius = mobile ? 42 : 48;
   const sizes = SPONSOR_GRAPH_STYLE.sizes[mode];

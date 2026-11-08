@@ -68,6 +68,7 @@ function SponsorNode({
   const diameter = node.radius * 2;
   const logoPadding = mode === "mobile" ? 10 : 14;
   const logoSize = diameter - logoPadding * 2;
+  const clipId = `sponsor-logo-clip-${mode}-${node.id.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
   const floatDelay = `${(node.index % 5) * 0.7}s`;
   const style = {
     "--arrive": `${arrive}s`,
@@ -78,6 +79,11 @@ function SponsorNode({
     <>
       <g className="sponsors-node-pop">
         <g className="sponsors-node-body">
+          <defs>
+            <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
+              <circle cx={node.x} cy={node.y} r={node.radius - 2} />
+            </clipPath>
+          </defs>
           <circle cx={node.x} cy={node.y} r={node.radius} pathLength="1" className="sponsors-node-ring" />
           <circle cx={node.x} cy={node.y} r={node.radius + 3} className="sponsors-node-ripple" />
           <circle cx={node.x} cy={node.y} r={node.radius - 1} className="sponsors-node-float" />
@@ -90,6 +96,7 @@ function SponsorNode({
               height={logoSize}
               preserveAspectRatio="xMidYMid meet"
               className={`sponsors-node-logo${node.invert ? " sponsors-node-logo-invert" : ""}`}
+              clipPath={`url(#${clipId})`}
               onError={() => setLogoFailed(true)}
               aria-hidden="true"
             />
@@ -207,6 +214,11 @@ function SponsorsSvg({
 
   return (
     <svg ref={svgRef} className={`sponsors-svg sponsors-svg-${graph.mode}`} viewBox={`0 0 ${graph.width} ${graph.height}`} role="group" aria-label="Sponsor network connected to OSSEC">
+      <defs>
+        <clipPath id={`sponsors-hub-clip-${graph.mode}`} clipPathUnits="userSpaceOnUse">
+          <circle cx={graph.center.x} cy={graph.center.y} r={graph.hubRadius - 2} />
+        </clipPath>
+      </defs>
       <g className="sponsors-svg-content">
         {edges.map((edge) => (
           <GraphEdgeView key={edge.id} edge={edge} active={activeEdgeIds.has(edge.id)} dimmed={hoveredId !== null && !activeEdgeIds.has(edge.id)} graph={graph} />
@@ -216,8 +228,7 @@ function SponsorsSvg({
           <circle cx={graph.center.x} cy={graph.center.y} r={graph.hubRadius + 3} className="sponsors-hub-ring" pathLength="1" />
           <circle cx={graph.center.x} cy={graph.center.y} r={graph.hubRadius + 10} className="sponsors-sonar sponsors-sonar-one" />
           <circle cx={graph.center.x} cy={graph.center.y} r={graph.hubRadius + 10} className="sponsors-sonar sponsors-sonar-two" />
-          <image href="/logo/logo.png" x={graph.center.x - graph.hubRadius} y={graph.center.y - graph.hubRadius} width={graph.hubRadius * 2} height={graph.hubRadius * 2} className="sponsors-hub-logo" aria-hidden="true" />
-          <text x={graph.center.x} y={graph.center.y + graph.hubRadius + 27} textAnchor="middle" className="sponsors-hub-caption">OSSEC{" // THE CLUB"}</text>
+          <image href="/logo/logo.png" x={graph.center.x - graph.hubRadius} y={graph.center.y - graph.hubRadius} width={graph.hubRadius * 2} height={graph.hubRadius * 2} className="sponsors-hub-logo" clipPath={`url(#sponsors-hub-clip-${graph.mode})`} aria-hidden="true" />
         </g>
 
         {graph.nodes.map((node) => {
@@ -272,8 +283,10 @@ export default function Sponsors() {
 
     const revealObserver = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
+        setReplayKey((key) => key + 1);
         setVisible(true);
-        revealObserver.disconnect();
+      } else {
+        setVisible(false);
       }
     }, { threshold: 0.3 });
     const activityObserver = new IntersectionObserver(([entry]) => {
@@ -341,7 +354,6 @@ export default function Sponsors() {
         <div className="sponsors-graph-mobile" inert={!visible}>
           <SponsorsSvg key={`mobile-${replayKey}`} graph={mobileGraph} hoveredId={hoveredId} activeNodeIds={mobileHighlight.nodeIds} activeEdgeIds={mobileHighlight.edgeIds} neighborIds={mobileHighlight.neighborIds} onFocusNode={setHoveredId} onBlurNode={onBlurNode} onClickNode={onClickNode} svgRef={setMobileSvg} />
         </div>
-        <button type="button" className="sponsors-replay" aria-label="Replay network animation" disabled={!visible} onClick={() => setReplayKey((key) => key + 1)}>↻ REPLAY</button>
         <span className="sponsors-online-flash" style={graphStyle} aria-hidden="true" />
       </div>
 
