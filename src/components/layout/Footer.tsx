@@ -8,7 +8,7 @@ const OSSEC = {
   email: "contact@ossec.tn",
   location: "ENSI, Tunisia",
   socials: [
-    { name: "Facebook", href: "" },
+    { name: "Facebook", href: "https://www.facebook.com/tunihackENSIS" },
     { name: "Instagram", href: "" },
     { name: "LinkedIn", href: "https://www.linkedin.com/company/ossec-ensi/posts/?feedView=all" },
     { name: "GitHub", href: "https://github.com/ossec10" },
@@ -19,15 +19,13 @@ const NAVIGATE = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Programme", href: "#program" },
-  { label: "Speakers", href: "#speakers" },
-  { label: "Board", href: "#board" },
   { label: "Sponsors", href: "#sponsors" },
 ];
 
 const QUICK_LINKS = [
   { label: "Register Now", href: "#register" },
   { label: "Previous Edition", href: "#previousedition" },
-  { label: "Contact Us", href: `mailto:${OSSEC.email}` },
+  { label: "Contact Us", href: `#event` },
 ];
 
 const ICONS: Record<string, string> = {

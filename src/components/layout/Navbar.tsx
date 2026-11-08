@@ -6,8 +6,9 @@ const LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'program', label: 'Programme' },
-  { id: 'previousedition', label: 'Previous Edition' },
   { id: 'sponsors', label: 'Sponsors' },
+  { id: 'previousedition', label: 'Previous Edition' },
+ 
 ];
 
 const SCROLL_THRESHOLD = 50;
@@ -85,10 +86,10 @@ const Navbar = () => {
           <Image
             src="/logo/TuniHack-removebg-preview.png"
             alt="TuniHack Logo"
-            width={88}
-            height={66}
-            priority
-            className="h-12 w-16 object-contain brightness-150"
+            width={40}
+            height={40}
+            loading="eager"
+            className="h-9 w-auto object-contain brightness-150"
           />
           <span className="font-mono text-lg font-bold tracking-tight text-foreground">
             TuniHack 12.0
