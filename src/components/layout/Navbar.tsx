@@ -92,7 +92,7 @@ const Navbar = () => {
             loading="eager"
             className="h-14 w-auto object-contain brightness-150"
           />
-          <span className="font-mono text-lg font-bold tracking-tight text-foreground">
+          <span className="font-label text-2xl font-bold tracking-[0.02em] text-foreground">
             TuniHack 12.0
           </span>
         </a>

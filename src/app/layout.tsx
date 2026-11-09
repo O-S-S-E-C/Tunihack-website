@@ -28,6 +28,14 @@ const jetbrains = localFont({
   variable: "--font-jetbrains",
 });
 
+const barlowCondensed = localFont({
+  src: [
+    { path: "./fonts/barlow-condensed-latin-600.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/barlow-condensed-latin-700.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-barlow-condensed",
+});
+
 export const metadata: Metadata = {
   title: "TuniHack 12.0",
   description: "Tunisia's National Hackathon",
@@ -42,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", inter.variable, jetbrains.variable, "font-sans", geist.variable)}
+      className={cn("h-full", "antialiased", inter.variable, jetbrains.variable, barlowCondensed.variable, "font-sans", geist.variable)}
     >
       <body className="relative isolate min-h-full flex flex-col">
         <SiteBackground />

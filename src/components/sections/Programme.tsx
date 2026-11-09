@@ -99,7 +99,7 @@ function ProgrammeDay({ day, index }: { day: (typeof days)[number]; index: numbe
   return (
     <section className="pg-day lg:col-span-2" aria-labelledby={`${day.id}-heading`}>
       <div className="pg-day-heading">
-        <span className="pg-day-kicker">{`// DAY 0${index + 1} · ${day.date}`}</span>
+        <span className="pg-day-kicker">{`Day 0${index + 1} — ${day.date}`}</span>
         <h3 id={`${day.id}-heading`}>{day.label}</h3>
       </div>
 
@@ -111,7 +111,7 @@ function ProgrammeDay({ day, index }: { day: (typeof days)[number]; index: numbe
         <div className="pg-cap" aria-hidden="true">
           <i />
           <span>
-            {day.label} <b>{"// ROOT"}</b>
+            {day.label} <b>ROOT</b>
           </span>
         </div>
 
@@ -154,7 +154,7 @@ export default function Programme() {
           <p className="text-muted leading-relaxed mt-7">
             Two days of building, competing, learning, and sharing. Follow the route from the first check-in to the final announcement.
           </p>
-          <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-secondary">
+          <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 font-label text-base font-semibold uppercase tracking-[0.06em] text-secondary">
             <span>#TuniHack</span>
             <span>#PitchHack</span>
             <span>#CTF</span>

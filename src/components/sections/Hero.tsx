@@ -74,7 +74,7 @@ const Hero = () => {
           </span>
         </h1>
 
-        <div className="hero-copy hero-rise mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-sm text-foreground/90" style={{ animationDelay: '1.85s' }}>
+        <div className="hero-copy hero-rise mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 font-label text-lg tracking-[0.04em] text-foreground/90" style={{ animationDelay: '1.85s' }}>
           <span className="flex items-center gap-2">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-secondary" aria-hidden>
               <path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z" /><circle cx="12" cy="9.5" r="2.5" />
@@ -93,7 +93,7 @@ const Hero = () => {
           <DynamicTagline />
         </p>
 
-        <p className="hero-copy hero-rise mt-1 font-mono text-xs uppercase tracking-[0.2em] text-[#bed0ee]" style={{ animationDelay: '2.05s' }}>
+        <p className="hero-copy hero-rise mt-1 font-label text-base uppercase tracking-[0.12em] text-[#bed0ee]" style={{ animationDelay: '2.05s' }}>
           Cybersecurity × Artificial Intelligence
         </p>
 

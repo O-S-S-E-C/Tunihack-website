@@ -5,7 +5,7 @@ const targetDate = new Date('2026-11-28T00:00:00').getTime();
 
 const TimeUnit = ({ value, label }: { value: number; label: string }) => (
   <div className="flex flex-col items-center justify-center p-4 min-w-[100px]">
-    <span className="text-6xl md:text-8xl font-extrabold text-foreground tabular-nums font-mono">
+    <span className="text-6xl md:text-8xl font-bold text-foreground tabular-nums font-label">
       {value.toString().padStart(2, '0')}
     </span>
     <span className="text-sm md:text-lg uppercase tracking-[0.2em] text-muted mt-3 font-medium">

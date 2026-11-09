@@ -91,10 +91,7 @@ function EventWordmark({ name, subtitle }: { name: keyof typeof EVENT_WORDMARKS;
         <span className="wm-accent" aria-hidden="true">Hack</span>
       </h3>
 
-      <p className="wm-subtitle">
-        <span className="wm-prompt" aria-hidden="true">&gt;</span> {subtitle}
-        <span className="wm-caret" aria-hidden="true" />
-      </p>
+      <p className="wm-subtitle">{subtitle}</p>
 
       <ul className="wm-chips">
         {chips.map((chip) => <li key={chip}>{chip}</li>)}

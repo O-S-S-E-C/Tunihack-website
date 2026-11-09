@@ -339,7 +339,7 @@ export default function Sponsors() {
   return (
     <section id="sponsors" ref={sectionRef} className="sponsors-section">
       <div className="sponsors-heading-wrap">
-        <p className="about-eyebrow">{"// POWERED BY"}</p>
+        <p className="about-eyebrow">Powered by</p>
         <h2 className="about-heading">MEET OUR SPONSORS</h2>
         <div className="about-heading-rule" aria-hidden="true" />
         <p className="text-muted leading-relaxed mt-7 max-w-2xl">The network behind the builders, ideas, and challenges shaping this edition of TuniHack.</p>

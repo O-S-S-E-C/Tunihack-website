@@ -49,7 +49,7 @@ export default function PreviousEdition() {
     <section id="previousedition" ref={sectionRef} className="gallery-section px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <div className="gallery-heading-wrap">
-          <p className="about-eyebrow">{"// LAST EDITION"}</p>
+          <p className="about-eyebrow">Last edition</p>
           <h2 className="about-heading">Previous Edition</h2>
           <div className="about-heading-rule" aria-hidden="true" />
           <p className="text-muted mt-7 max-w-2xl leading-relaxed">

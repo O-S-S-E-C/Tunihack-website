@@ -52,7 +52,7 @@ function Logo() {
         className="h-12 w-12 object-contain"
       />
 
-      <span className="font-mono text-2xl font-bold tracking-tight text-foreground">
+      <span className="font-label text-3xl font-bold tracking-[0.02em] text-foreground">
         OSSEC<span className="text-secondary">_</span>
       </span>
     </a>
