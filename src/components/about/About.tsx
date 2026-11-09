@@ -56,14 +56,49 @@ function AboutStat({ target, suffix, plain, label, description }: (typeof ABOUT_
   );
 }
 
-function EventWordmark({ name, subtitle }: { name: "TuniHack" | "PitchHack"; subtitle: string }) {
-  const [first, accent] = name === "TuniHack" ? ["Tuni", "Hack"] : ["Pitch", "Hack"];
+const EVENT_WORDMARKS = {
+  TuniHack: {
+    index: "01",
+    tag: "Hackathon",
+    first: "Tuni",
+    chips: ["24H build", "Teams", "Jury pitch"],
+  },
+  PitchHack: {
+    index: "02",
+    tag: "Pitch marathon",
+    first: "Pitch",
+    chips: ["No code", "Live pitch", "Expert feedback"],
+  },
+} as const;
+
+function EventWordmark({ name, subtitle }: { name: keyof typeof EVENT_WORDMARKS; subtitle: string }) {
+  const { index, tag, first, chips } = EVENT_WORDMARKS[name];
   return (
-    <div className="about-event-wordmark-wrap">
-      <h3 className="about-event-wordmark" aria-label={name}>
-        <span className="about-event-wordmark-main">{first}</span><span className="about-event-wordmark-accent">{accent}</span>
+    <div className="wm">
+      <span aria-hidden="true" className="wm-corner wm-corner-tl" />
+      <span aria-hidden="true" className="wm-corner wm-corner-tr" />
+      <span aria-hidden="true" className="wm-corner wm-corner-bl" />
+      <span aria-hidden="true" className="wm-corner wm-corner-br" />
+
+      <p className="wm-meta">
+        <span className="wm-index">{index}</span>
+        <span aria-hidden="true" className="wm-meta-line" />
+        <span>{tag}</span>
+      </p>
+
+      <h3 className="wm-title" aria-label={name}>
+        <span className="wm-outline" data-text={first} aria-hidden="true">{first}</span>
+        <span className="wm-accent" aria-hidden="true">Hack</span>
       </h3>
-      <p className="about-event-wordmark-subtitle">{subtitle}</p>
+
+      <p className="wm-subtitle">
+        <span className="wm-prompt" aria-hidden="true">&gt;</span> {subtitle}
+        <span className="wm-caret" aria-hidden="true" />
+      </p>
+
+      <ul className="wm-chips">
+        {chips.map((chip) => <li key={chip}>{chip}</li>)}
+      </ul>
     </div>
   );
 }
