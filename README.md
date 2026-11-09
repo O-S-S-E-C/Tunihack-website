@@ -40,7 +40,7 @@ Available tiers are `platinum`, `gold`, and `partner`. The graph calculates the 
 After adding a sponsor, run `npm run build` to check the data and layout compile correctly.
 
 # next steps
-. add instagram link 
-. add registration link 
-. modify both tunihack and pitchhack  description 
-. work more on the eventsection 
+## add instagramme link 
+## change tunihack and pitchhack description 
+## change FQA 
+## 

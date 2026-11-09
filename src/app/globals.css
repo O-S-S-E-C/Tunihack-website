@@ -85,10 +85,23 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-body {
+html {
   background: var(--background);
+}
+
+body {
+  background: transparent;
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
+}
+
+.site-background-overlay {
+  z-index: 0;
+  background: linear-gradient(180deg, rgb(4 9 24 / 0%) 0%, rgb(4 9 24 / 2%) 45%, rgb(4 9 24 / 10%) 75%, rgb(4 9 24 / 16%) 100%);
+}
+
+html[data-scene-section="program"] .site-background-overlay {
+  background: radial-gradient(ellipse at center, rgb(4 9 24 / 24%) 0%, rgb(4 9 24 / 38%) 100%);
 }
 
 ::selection {
@@ -410,7 +423,7 @@ body {
 /* ───────────── SPONSORS NETWORK ───────────── */
 .sponsors-section { margin-top: 6rem; padding-top: 5rem; border-top: 1px solid rgb(34 211 238 / 22%); }
 .sponsors-heading-wrap { max-width: 42rem; }
-.sponsors-graph-wrap { position: relative; isolation: isolate; margin-top: 3rem; min-height: 0; overflow: hidden; border: 1px solid rgb(34 211 238 / 18%); border-radius: 1rem; background: radial-gradient(ellipse at 50% 48%, color-mix(in srgb, var(--sponsor-blue) 12%, transparent), transparent 44%), var(--sponsor-background); box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%), 0 18px 50px rgb(2 8 24 / 28%); }
+.sponsors-graph-wrap { position: relative; isolation: isolate; margin-top: 3rem; min-height: 0; overflow: hidden; border: 1px solid rgb(34 211 238 / 18%); border-radius: 1rem; background: radial-gradient(ellipse at 50% 48%, color-mix(in srgb, var(--sponsor-blue) 12%, transparent), transparent 44%), rgb(4 9 24 / 48%); box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%), 0 18px 50px rgb(2 8 24 / 28%); backdrop-filter: blur(10px); }
 .sponsors-dot-grid { position: absolute; z-index: 0; inset: 0; background-image: radial-gradient(circle, rgb(255 255 255 / 14%) 1px, transparent 1px); background-size: 28px 28px; }
 .sponsors-graph-desktop, .sponsors-graph-mobile { position: relative; z-index: 1; }
 .sponsors-graph-mobile { display: none; }
@@ -418,9 +431,9 @@ body {
 .sponsors-svg-content { opacity: 0; }
 .sponsors-visible .sponsors-svg-content { opacity: 1; }
 .sponsors-edge { fill: none; stroke: var(--sponsor-cyan); stroke-width: 1.3; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0.3; }
-.sponsors-visible .sponsors-edge-tree { animation: sponsors-edge-draw 800ms cubic-bezier(0.16, 1, 0.3, 1) var(--start) both; }
+.sponsors-visible .sponsors-edge-tree { animation: sponsors-edge-draw 400ms cubic-bezier(0.16, 1, 0.3, 1) var(--start) both; }
 .sponsors-edge-mesh { opacity: 0.18; }
-.sponsors-visible .sponsors-edge-mesh { animation: sponsors-mesh-draw 600ms ease-out var(--start) both; }
+.sponsors-visible .sponsors-edge-mesh { animation: sponsors-mesh-draw 350ms ease-out var(--start) both; }
 .sponsors-edge-active { stroke: var(--sponsor-cyan); stroke-width: 2.5; opacity: 1; filter: drop-shadow(0 0 4px var(--sponsor-cyan)); }
 .sponsors-edge-dim { opacity: 0.5; }
 .sponsors-signal-head { fill: #cffafe; opacity: 0; filter: drop-shadow(0 0 5px var(--sponsor-cyan)); }
@@ -464,7 +477,7 @@ body {
 .sponsors-cta p { color: var(--foreground); font-family: var(--font-jetbrains), monospace; font-size: 0.82rem; letter-spacing: 0.08em; }
 
 /* ───────────── PREVIOUS EDITION GALLERY ───────────── */
-.gallery-section { background: var(--background); }
+.gallery-section { background: transparent; }
 .gallery-heading-wrap { max-width: 42rem; }
 .gallery-viewport { position: relative; height: 420px; margin-top: 2rem; overflow: hidden; mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent); }
 .gallery-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; align-items: start; }
@@ -522,7 +535,7 @@ body {
 }
 
 .starfield {
-  background-color: #040918;
+  background-color: transparent;
   background-image:
     radial-gradient(circle at 12% 20%, rgba(255,255,255,.75) 0 1px, transparent 1.5px),
     radial-gradient(circle at 77% 18%, rgba(255,255,255,.65) 0 1px, transparent 1.5px),
@@ -563,14 +576,8 @@ body {
   will-change: transform, opacity;
 }
 .hero-dim {
-  background: var(--background);
+  background: transparent;
   opacity: calc(var(--p, 0) * 0.85);
-}
-
-.page-sheet {
-  border-top: 1px solid rgba(34, 211, 238, 0.35);
-  border-radius: 2rem 2rem 0 0;
-  box-shadow: 0 -24px 70px rgba(37, 99, 235, 0.22);
 }
 
 .hero-rise {
@@ -709,7 +716,7 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: var(--background);
+  background: transparent;
 }
 
 .about-heading-wrap { margin-bottom: 4rem; }
@@ -917,8 +924,9 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;
-  background: #0b0f1a;
+  background: rgb(11 15 26 / 58%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(12px);
 }
 
 .about-terminal.about-reveal-ready:not(.about-reveal-visible) { opacity: 0; transform: translateY(24px); }

@@ -13,7 +13,7 @@ export default function Home() {
       <Loader />
       <Navbar />
       <Hero />
-      <div className="page-sheet relative z-10 bg-background">
+      <div className="page-sheet relative z-10 bg-transparent">
         <CountdownTimer />
         <About />
         <PreviousEdition />

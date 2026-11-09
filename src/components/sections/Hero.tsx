@@ -1,10 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
-import dynamic from 'next/dynamic';
 import DecryptText from '@/components/ui/DecryptText';
-
-// three.js is only needed in the browser; load it after first paint.
-const HeroScene = dynamic(() => import('@/components/sections/HeroScene'), { ssr: false });
 
 const TAGLINES = [
   'Build. Break. Defend.',
@@ -48,10 +44,9 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" ref={ref} className="sticky top-0 z-0 h-screen overflow-hidden bg-black">
+    <section id="home" ref={ref} className="relative z-10 h-screen overflow-hidden bg-transparent">
       {/* 3D space: stars, floating wireframes, penguin hologram */}
       <div aria-hidden className="hero-glow pointer-events-none absolute inset-0" />
-      <HeroScene />
 
       <div className="hero-inner relative z-10 flex h-full flex-col justify-start pb-12 pl-[clamp(1.5rem,5vw,5rem)] pr-6 pt-24 md:justify-end md:pb-14 md:pt-28">
         <h1

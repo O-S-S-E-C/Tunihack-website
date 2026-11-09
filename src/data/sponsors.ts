@@ -12,7 +12,7 @@ export type Sponsor = {
 export const SPONSORS: Sponsor[] = [
   { name: "Talan", tier: "platinum", logo: "/sponsors/talan.png", url: "https://www.talan.com" },
   { name: "GOMYCODE", tier: "gold", logo: "/sponsors/gomycode.png", url: "https://gomycode.com" },
-  { name: "Pristine", tier: "partner", logo: "/sponsors/pristine.png" },
+  { name: "MAD", tier: "partner", logo: "/sponsors/mad.jpg" },
  
  
 ];
