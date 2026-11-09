@@ -5,7 +5,6 @@ import type { CSSProperties, MouseEvent } from "react";
 import { SPONSORS, type Sponsor, type Tier } from "@/data/sponsors";
 import { buildSponsorGraph, SPONSOR_GRAPH_STYLE, type GraphEdge, type GraphMode, type GraphNode, type SponsorGraph } from "@/lib/sponsorGraph";
 
-const EMAIL = "ossec@ensi-uma.tn";
 const TIERS: Tier[] = ["platinum", "gold", "partner"];
 
 function initials(name: string) {
@@ -167,8 +166,8 @@ function GraphEdgeView({ edge, active, dimmed, graph }: {
       <path d={edge.d} pathLength="1" className={edgeClass} style={style} />
       {edge.kind === "tree" && (
         <circle r="4" className="sponsors-signal-head" style={style} aria-hidden="true">
-          <animateMotion path={edge.d} dur=".8s" fill="freeze" begin="indefinite" data-sequence-start={edge.start} />
-          <animate attributeName="opacity" values="0;1;0" keyTimes="0;.12;1" dur=".8s" fill="freeze" begin="indefinite" data-sequence-start={edge.start} />
+          <animateMotion path={edge.d} dur=".45s" fill="freeze" begin="indefinite" data-sequence-start={edge.start} />
+          <animate attributeName="opacity" values="0;1;0" keyTimes="0;.12;1" dur=".45s" fill="freeze" begin="indefinite" data-sequence-start={edge.start} />
         </circle>
       )}
       <circle r="2.4" className="sponsors-packet" aria-hidden="true">
@@ -360,7 +359,7 @@ export default function Sponsors() {
       <ul className="sr-only" aria-label="Sponsors by tier">
         {TIERS.map((tier) => <li key={tier}>{tier}<ul>{grouped[tier].map((sponsor) => <li key={sponsor.name}>{sponsor.name}</li>)}</ul></li>)}
       </ul>
-      <div className="sponsors-cta"><p>Want your brand on the network?</p><a href={`mailto:${EMAIL}`} className="outline-button rounded-md px-5 py-3 text-sm font-semibold">Become a sponsor →</a></div>
+      <div className="sponsors-cta"><p>Want your brand on the network?</p><a href="#contact" className="outline-button rounded-md px-5 py-3 text-sm font-semibold">Become a sponsor →</a></div>
     </section>
   );
 }

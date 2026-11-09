@@ -84,7 +84,7 @@ const Navbar = () => {
       <nav className="nav-enter relative mx-auto flex h-[72px] max-w-[1400px] items-center justify-between px-6 lg:px-10">
         <a href="#home" onClick={goHome} className="flex items-center gap-3 transition-opacity hover:opacity-80">
           <Image
-            src="/logo/TuniHack-removebg-preview.png"
+            src="/logo/TuniHackWordmark.png"
             alt="TuniHack Logo"
             width={40}
             height={40}

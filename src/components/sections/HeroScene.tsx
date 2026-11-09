@@ -297,8 +297,9 @@ export default function HeroScene() {
     const updateScroll = () => {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       scroll.target = maxScroll > 0 ? clamp01(window.scrollY / maxScroll) : 0;
-      const section = document.elementFromPoint(window.innerWidth / 2, window.innerHeight / 2)?.closest("section")?.id;
-      fogTint = section === "sponsors" ? 0x4050a8 : section === "about" ? 0x2563eb : 0x22d3ee;
+      const section = document.elementFromPoint(window.innerWidth / 2, window.innerHeight / 2)?.closest("section[id]")?.id;
+      document.documentElement.dataset.sceneSection = section ?? "";
+      fogTint = section === "program" || section === "sponsors" ? 0x4050a8 : section === "about" ? 0x2563eb : 0x22d3ee;
     };
     updateScroll();
     window.addEventListener("scroll", updateScroll, { passive: true });
@@ -722,6 +723,7 @@ export default function HeroScene() {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("scroll", updateScroll);
       window.removeEventListener("resize", updateScroll);
+      delete document.documentElement.dataset.sceneSection;
       document.removeEventListener("visibilitychange", onVisibility);
       scene.traverse((o) => {
         const m = o as THREE.Mesh;

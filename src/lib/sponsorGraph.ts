@@ -41,15 +41,15 @@ export const SPONSOR_GRAPH_STYLE = {
     blue: "#2563eb",
   },
   sizes: {
-    desktop: { platinum: 96, gold: 84, partner: 72 },
-    mobile: { platinum: 76, gold: 66, partner: 56 },
+    desktop: { platinum: 160, gold: 144, partner: 128 },
+    mobile: { platinum: 112, gold: 104, partner: 96 },
   },
   timing: {
-    hub: 1,
-    branchGap: 0.08,
-    siblingGap: 0.12,
-    edge: 0.8,
-    mesh: 0.6,
+    hub: 0.55,
+    branchGap: 0.04,
+    siblingGap: 0.06,
+    edge: 0.4,
+    mesh: 0.35,
   },
 } as const;
 
