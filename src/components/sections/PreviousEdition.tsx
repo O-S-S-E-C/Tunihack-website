@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { GALLERY_PHOTOS, type GalleryPhoto } from "@/data/gallery";
+import { HeroVideoDialog } from "@/components/ui/hero-video-dialog";
 
 function splitColumns(photos: GalleryPhoto[], count: number) {
   return Array.from({ length: count }, (_, columnIndex) =>
@@ -77,6 +78,26 @@ export default function PreviousEdition() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="relive">
+          <div className="relive-head">
+            <h3 className="relive-title">
+              Relive the <span>experience.</span>
+            </h3>
+            <p className="text-muted max-w-md leading-relaxed">
+              A look back at TuniHack through the teams, atmosphere and moments of previous editions.
+            </p>
+          </div>
+
+          {/* The video only loads once the dialog opens */}
+          <HeroVideoDialog
+            className="mt-8"
+            animationStyle="from-center"
+            videoSrc="/videos/tunihack-previous-edition.mp4"
+            thumbnailSrc="/videos/tunihack-previous-edition-poster.jpg"
+            thumbnailAlt="TuniHack previous edition: participants in the amphitheatre"
+          />
         </div>
       </div>
     </section>

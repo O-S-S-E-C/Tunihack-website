@@ -15,7 +15,7 @@ import {
 } from "@/data/about";
 
 const ABOUT_STATS = [
-  { target: 2014, suffix: "", plain: true, label: "The beginning of TuniHack", description: "Bringing students together since 2014." },
+  { target: 2015, suffix: "", plain: true, label: "The beginning of TuniHack", description: "Bringing students together since 2015." },
   { target: 6, suffix: "K+", label: "Social media followers", description: "Following the TuniHack Facebook page." },
   { target: 150, suffix: "+", label: "Competitors & visitors each year", description: "Joining TuniHack to compete, build and discover." },
 ];

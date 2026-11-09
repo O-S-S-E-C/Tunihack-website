@@ -651,6 +651,19 @@ html[data-scene-section="program"] .site-background-overlay {
 @media (prefers-reduced-motion: reduce) {
   .nav-enter { animation: none; }
 }
+
+/* Relive the experience (video) */
+.relive { margin-top: 5rem; }
+.relive-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem 3rem; flex-wrap: wrap; }
+.relive-title {
+  color: #f8fafc; font-family: var(--font-sans), sans-serif;
+  font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 900; letter-spacing: -0.06em; line-height: 1;
+}
+.relive-title span { color: var(--secondary); }
+@media (max-width: 767px) {
+  .relive { margin-top: 3.5rem; }
+}
+
 /* ───────────── LOADING PAGE ───────────── */
 .loader {
   position: fixed;
