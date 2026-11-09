@@ -855,30 +855,8 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
 .wm-corner-br { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; transform: translate(0.9rem, 0.9rem); }
 .about-reveal-visible .wm-corner { opacity: 1; transform: none; transition-delay: 250ms; }
 
-.wm-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: #94a3b8;
-  font-family: var(--font-barlow-condensed), sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.wm-index { color: var(--secondary); }
-.wm-meta-line {
-  width: 2.5rem;
-  height: 1px;
-  background: linear-gradient(90deg, var(--secondary), transparent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 800ms var(--wm-ease) 300ms;
-}
-.about-reveal-visible .wm-meta-line { transform: scaleX(1); }
 
 .wm-title {
-  margin-top: 1rem;
   font-family: var(--font-sans), sans-serif;
   font-size: clamp(3.25rem, 6.4vw, 5.6rem);
   font-weight: 900;
@@ -1164,7 +1142,6 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
   .about-event-row > .about-terminal,
   .about-terminal-cursor,
   .wm-corner,
-  .wm-meta-line,
   .wm-outline::after,
   .wm-accent,
   .wm-chips li {

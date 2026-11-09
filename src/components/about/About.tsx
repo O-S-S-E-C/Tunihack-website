@@ -58,33 +58,23 @@ function AboutStat({ target, suffix, plain, label, description }: (typeof ABOUT_
 
 const EVENT_WORDMARKS = {
   TuniHack: {
-    index: "01",
-    tag: "Hackathon",
     first: "Tuni",
     chips: ["24H build", "Teams", "Jury pitch"],
   },
   PitchHack: {
-    index: "02",
-    tag: "Pitch marathon",
     first: "Pitch",
     chips: ["No code", "Live pitch", "Expert feedback"],
   },
 } as const;
 
 function EventWordmark({ name, subtitle }: { name: keyof typeof EVENT_WORDMARKS; subtitle: string }) {
-  const { index, tag, first, chips } = EVENT_WORDMARKS[name];
+  const { first, chips } = EVENT_WORDMARKS[name];
   return (
     <div className="wm">
       <span aria-hidden="true" className="wm-corner wm-corner-tl" />
       <span aria-hidden="true" className="wm-corner wm-corner-tr" />
       <span aria-hidden="true" className="wm-corner wm-corner-bl" />
       <span aria-hidden="true" className="wm-corner wm-corner-br" />
-
-      <p className="wm-meta">
-        <span className="wm-index">{index}</span>
-        <span aria-hidden="true" className="wm-meta-line" />
-        <span>{tag}</span>
-      </p>
 
       <h3 className="wm-title" aria-label={name}>
         <span className="wm-outline" data-text={first} aria-hidden="true">{first}</span>
