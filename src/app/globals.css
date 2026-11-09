@@ -754,6 +754,30 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
   background: linear-gradient(90deg, var(--secondary), #2563eb);
 }
 
+.about-manifesto {
+  --reveal: 0;
+  max-width: 54rem;
+  margin: -1rem 0 5rem;
+  color: #f8fafc;
+  font-family: var(--font-sans), sans-serif;
+  font-size: clamp(1.6rem, 3.4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+/* Each word fades from 0.14 to 1 as --reveal sweeps past its index. */
+.about-manifesto-word {
+  opacity: clamp(0.14, calc(var(--reveal) * (var(--n) + 3) - var(--i)), 1);
+  transition: opacity 180ms linear;
+}
+.about-manifesto-lead { color: #60a5fa; }
+.about-manifesto-accent {
+  color: var(--secondary);
+  text-shadow: 0 0 calc(var(--reveal) * 28px) rgba(34, 211, 238, 0.35);
+}
+
 .about-event-row { position: relative; }
 .about-event-content,
 .about-terminal { min-width: 0; }
@@ -845,8 +869,6 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
   transform: translateY(0);
 }
 
-.about-stats .about-stat.about-reveal-visible:nth-child(2) { transform: translateY(-0.45rem); }
-.about-stats .about-stat.about-reveal-visible:nth-child(3) { transform: translateY(-0.15rem); }
 .about-stats .about-stat.about-reveal-visible:nth-child(2) { transition-delay: 100ms; }
 .about-stats .about-stat.about-reveal-visible:nth-child(3) { transition-delay: 200ms; }
 
@@ -871,8 +893,6 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
   transition: border-color 200ms ease, transform 250ms ease, box-shadow 250ms ease;
 }
 
-.about-stat:nth-child(2) { transform: translateY(-0.45rem); }
-.about-stat:nth-child(3) { transform: translateY(-0.15rem); }
 
 .about-stat::before {
   position: absolute;
@@ -966,7 +986,7 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
   min-height: 23.25rem;
   padding: 1.25rem;
   color: #e2e8f0;
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-jetbrains), monospace;
   font-size: clamp(1rem, 1.2vw, 1.05rem);
   font-weight: 600;
   line-height: 1.75;
@@ -1003,6 +1023,7 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
 @media (max-width: 767px) {
   .about-section { padding-top: 4.5rem; padding-bottom: 4.5rem; }
   .about-heading-wrap { margin-bottom: 2.5rem; }
+  .about-manifesto { margin: -0.5rem 0 3.5rem; }
   .about-heading { font-size: clamp(1.2rem, 5vw, 1.625rem); }
   .about-event-row { gap: 1.75rem; }
   .about-event-visual { min-height: 11rem; }
@@ -1012,7 +1033,6 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
   .about-terminal-body { min-height: 22.25rem; padding: 1rem; font-size: 0.95rem; }
   .about-stats { grid-template-columns: 1fr; margin-top: 3.5rem; }
   .about-stat { min-height: 8.25rem; }
-  .about-stat:nth-child(2), .about-stat:nth-child(3) { transform: none; }
   .about-divider { margin: 3.5rem auto; }
 }
 

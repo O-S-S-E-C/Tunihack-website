@@ -87,10 +87,10 @@ const Navbar = () => {
           <Image
             src="/logo/TuniHackWordmark.png"
             alt="TuniHack Logo"
-            width={40}
-            height={40}
+            width={64}
+            height={64}
             loading="eager"
-            className="h-9 w-auto object-contain brightness-150"
+            className="h-14 w-auto object-contain brightness-150"
           />
           <span className="font-mono text-lg font-bold tracking-tight text-foreground">
             TuniHack 12.0

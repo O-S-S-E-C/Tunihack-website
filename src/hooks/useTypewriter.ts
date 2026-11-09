@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import type { TerminalLine } from "@/data/about";
 
+const CHAR_DELAY = 24; // ms per character
+const LINE_DELAY = 180; // pause between lines
+
 export function useTypewriter(lines: TerminalLine[], active: boolean) {
   const [visibleLines, setVisibleLines] = useState<TerminalLine[]>([]);
   const [complete, setComplete] = useState(false);
@@ -34,15 +37,15 @@ export function useTypewriter(lines: TerminalLine[], active: boolean) {
           return next;
         });
         if (characterIndex < line.text.length) {
-          timer = setTimeout(typeCharacter, 42);
+          timer = setTimeout(typeCharacter, CHAR_DELAY);
         } else {
           timer = setTimeout(() => {
             lineIndex += 1;
             showNextLine();
-          }, 260);
+          }, LINE_DELAY);
         }
       };
-      timer = setTimeout(typeCharacter, 42);
+      timer = setTimeout(typeCharacter, CHAR_DELAY);
     };
 
     timer = setTimeout(() => {

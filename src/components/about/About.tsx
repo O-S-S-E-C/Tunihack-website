@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import EventRow from "@/components/about/EventRow";
+import Manifesto from "@/components/about/Manifesto";
 import { useInView } from "@/hooks/useInView";
 import Programme from "@/components/sections/Programme";
 import Sponsors from "@/components/sections/Sponsors";
@@ -13,12 +14,12 @@ import {
 } from "@/data/about";
 
 const ABOUT_STATS = [
-  { target: 2012, suffix: "", label: "The beginning of OSSEC", description: "Building the community since 2012." },
-  { target: 10000, suffix: "+", label: "Social media followers", description: "Following OSSEC activities and events." },
-  { target: 120, suffix: "+", label: "Active members each year", description: "Students learning, building and sharing together." },
+  { target: 2014, suffix: "", plain: true, label: "The beginning of TuniHack", description: "Bringing students together since 2014." },
+  { target: 6, suffix: "K+", label: "Social media followers", description: "Following the TuniHack Facebook page." },
+  { target: 150, suffix: "+", label: "Competitors & visitors each year", description: "Joining TuniHack to compete, build and discover." },
 ];
 
-function AboutStat({ target, suffix, label, description }: (typeof ABOUT_STATS)[number]) {
+function AboutStat({ target, suffix, plain, label, description }: (typeof ABOUT_STATS)[number]) {
   const { ref, inView } = useInView<HTMLDivElement>(0.3);
   const [count, setCount] = useState(0);
 
@@ -41,10 +42,13 @@ function AboutStat({ target, suffix, label, description }: (typeof ABOUT_STATS)[
     return () => cancelAnimationFrame(frame);
   }, [inView, target]);
 
+  // Years read as "2014", not "2,014".
+  const format = (n: number) => (plain ? String(n) : n.toLocaleString());
+
   return (
     <article ref={ref} className="about-stat">
-      <strong className="about-stat-value" aria-label={`${target.toLocaleString()}${suffix}`}>
-        {count.toLocaleString()}{suffix}
+      <strong className="about-stat-value" aria-label={`${format(target)}${suffix}`}>
+        {format(count)}{suffix}
       </strong>
       <span className="about-stat-label">{label}</span>
       <p className="about-stat-description">{description}</p>
@@ -73,6 +77,8 @@ export default function About() {
           <h2 className="about-heading">ABOUT TUNIHACK</h2>
           <div className="about-heading-rule" aria-hidden="true" />
         </div>
+
+        <Manifesto />
 
         <EventRow
           terminalTitle={TUNIHACK_TERMINAL_TITLE}
