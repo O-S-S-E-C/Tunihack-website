@@ -5,7 +5,8 @@ import EventRow from "@/components/about/EventRow";
 import Manifesto from "@/components/about/Manifesto";
 import { useInView } from "@/hooks/useInView";
 import Programme from "@/components/sections/Programme";
-import Sponsors from "@/components/sections/Sponsors";
+// Previous graph version: "@/components/sections/Sponsors" (kept for now, not rendered)
+import Sponsors from "@/components/sections/SponsorsShowcase";
 import {
   PITCHHACK_TERMINAL_LINES,
   PITCHHACK_TERMINAL_TITLE,
