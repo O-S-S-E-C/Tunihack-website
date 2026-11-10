@@ -11,8 +11,8 @@ const SECONDARY = 0x22d3ee;
 const CAMERA_Z = 9;
 const FOV = 40;
 const PENGUIN_HEIGHT = 4.0; // hologram height in local units
-const SPRITE_ASPECT = 937 / 1249; // width / height of /public/hero/tux-hologram.png
-const SPRITE_URL = "/hero/tux-hologram.png";
+const SPRITE_ASPECT = 937 / 1249; // width / height of /public/hero/tux-hologram.webp
+const SPRITE_URL = "/hero/tux-hologram.webp";
 
 /* -------------------------------------------------------------------------- */
 /*  Hologram shader                                                            */
@@ -278,7 +278,7 @@ export default function HeroScene() {
     renderer.setPixelRatio(dpr);
     renderer.setClearColor(0x000000, 0);
     const canvas = renderer.domElement;
-    canvas.style.cssText = "display:block;width:100%;height:100%";
+    canvas.style.cssText = "display:block;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease";
     host.appendChild(canvas);
 
     const scene = new THREE.Scene();
@@ -415,6 +415,7 @@ export default function HeroScene() {
     addSprite(1, false, 0, 0, 0);
 
     let disposed = false;
+    let introTimeout: number | undefined;
     let introAt = reduce ? 0 : -1;
     let introObserver: MutationObserver | undefined;
     const isLoaderExiting = () => document.documentElement.dataset.loading !== "on";
@@ -446,7 +447,13 @@ export default function HeroScene() {
       tex.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
       texU.value = tex;
       sprites.forEach((m) => (m.visible = true));
-      if (!reduce) waitForLoader();
+      if (!reduce) {
+        if (isLoaderExiting()) beginIntro();
+        else {
+          introTimeout = window.setTimeout(beginIntro, 3500);
+          waitForLoader();
+        }
+      }
       if (reduce) renderer.render(scene, camera);
     });
 
@@ -687,6 +694,7 @@ export default function HeroScene() {
       last = now;
       update(dt);
       renderer.render(scene, camera);
+      canvas.style.opacity = "1";
     };
     const onVisibility = () => {
       visible = !document.hidden;
@@ -715,6 +723,7 @@ export default function HeroScene() {
 
     return () => {
       disposed = true;
+      if (introTimeout) clearTimeout(introTimeout);
       introObserver?.disconnect();
       texU.value?.dispose();
       cancelAnimationFrame(raf);

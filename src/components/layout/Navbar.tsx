@@ -85,11 +85,12 @@ const Navbar = () => {
       <nav className="nav-enter relative mx-auto flex h-[72px] max-w-[1400px] items-center justify-between px-6 lg:px-10">
         <a href="#home" onClick={goHome} className="flex items-center gap-3 transition-opacity hover:opacity-80">
           <Image
-            src="/logo/TuniHackWordmark.png"
+            src="/logo/TuniHackWordmark.webp"
             alt="TuniHack Logo"
             width={64}
             height={64}
             loading="eager"
+            priority
             className="h-14 w-auto object-contain brightness-150"
           />
           <span className="font-label text-2xl font-bold tracking-[0.02em] text-foreground">

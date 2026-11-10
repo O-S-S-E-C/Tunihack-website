@@ -1,9 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import GlyphSonar from "@/components/ui/GlyphSonar";
-
-const LOGO = "/logo/TuniHackWordmark.png";
-const MIN_MS = 2800;      // minimum time on screen so the loader animation can play
+const MIN_MS = 1400;      // minimum time on screen so the loader animation can play
 const MAX_MS = 8000;      // never block the site longer than this
 const ONCE_PER_SESSION = false; // true = only on the first page load of a browser session
 const KEY = "tunihack-loader-seen";
@@ -37,7 +35,7 @@ export default function Loader() {
     document.body.style.overflow = "hidden";
 
     const start = performance.now();
-    let loaded = document.readyState === "complete";
+    let loaded = document.readyState !== "loading";
     let done = false;
     const timers: ReturnType<typeof setTimeout>[] = [];
     let raf = 0;
@@ -58,8 +56,8 @@ export default function Loader() {
       const t = performance.now() - start;
       if ((loaded && t >= (reduce ? 800 : MIN_MS)) || t >= MAX_MS) finish();
     };
-    const onLoad = () => { loaded = true; check(); };
-    if (!loaded) window.addEventListener("load", onLoad);
+    const onDOMContentLoaded = () => { loaded = true; check(); };
+    if (!loaded) document.addEventListener("DOMContentLoaded", onDOMContentLoaded, { once: true });
 
     const tick = () => {
       const t = performance.now() - start;
@@ -70,7 +68,7 @@ export default function Loader() {
     raf = requestAnimationFrame(tick);
     const maxTimer: ReturnType<typeof setTimeout> = setTimeout(finish, MAX_MS);
     return () => {
-      window.removeEventListener("load", onLoad);
+      document.removeEventListener("DOMContentLoaded", onDOMContentLoaded);
       cancelAnimationFrame(raf);
       if (maxTimer) clearTimeout(maxTimer);
       timers.forEach(clearTimeout);
@@ -98,10 +96,13 @@ export default function Loader() {
 
       <div className="loader-stage">
         <div className="loader-logo">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={LOGO} alt="TuniHack 12.0" className="loader-img" fetchPriority="high" draggable={false} />
-          <span className="loader-lid loader-lid-l" />
-          <span className="loader-lid loader-lid-r" />
+          <img
+            src="/logo/TuniHackWordmark.webp"
+            alt="TuniHack Wordmark"
+            className="loader-wordmark-image"
+            fetchPriority="high"
+            draggable={false}
+          />
         </div>
 
         <div className="loader-meter" aria-hidden>
