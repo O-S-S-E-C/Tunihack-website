@@ -1,6 +1,7 @@
 "use client";
 
 import FaqConsole from "@/components/sections/FaqConsole";
+import SocialMediaBeam from "@/components/sections/SocialMediaBeam";
 
 export default function EventSections() {
   return (
@@ -39,10 +40,8 @@ export default function EventSections() {
         <div className="mx-auto max-w-7xl text-center">
           <p className="section-kicker mb-5">Stay connected</p>
           <h2 className="about-heading">Contact Us<span className="text-secondary">.</span></h2>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a href="https://www.facebook.com/tunihackENSI" target="_blank" rel="noopener noreferrer" className="outline-button rounded-full px-6 py-3 text-sm font-semibold">Facebook</a>
-            <a href="https://www.linkedin.com/company/ossec-ensi/posts/" target="_blank" rel="noopener noreferrer" className="outline-button rounded-full px-6 py-3 text-sm font-semibold">LinkedIn</a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="outline-button rounded-full px-6 py-3 text-sm font-semibold">Instagram</a>
+          <div className="mt-10">
+            <SocialMediaBeam />
           </div>
         </div>
       </section>
