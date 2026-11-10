@@ -709,7 +709,23 @@ html[data-scene-section="program"] .site-background-overlay {
   0%, 100% { transform: scale(0.9); }
   50%      { transform: scale(1.08); }
 }
-.loader-img { display: block; width: 100%; height: 100%; user-select: none; }
+.loader-wordmark {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #e8f8ff;
+  font-family: "Barlow Condensed", var(--font-sans), sans-serif;
+  font-size: clamp(3.4rem, 13vmin, 8rem);
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: -0.075em;
+  text-shadow: 0 0 12px #2563eb, 0 0 32px #22d3ee, 0 0 68px rgba(34, 211, 238, 0.65);
+  user-select: none;
+}
+.loader-wordmark small { margin-top: 0.35em; font-size: 0.3em; letter-spacing: 0.12em; color: #22d3ee; }
 
 /* eyelids over each pupil (positions are % of the artwork) */
 .loader-lid {
