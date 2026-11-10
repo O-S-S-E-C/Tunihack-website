@@ -114,27 +114,13 @@ export default function FaqConsole() {
                   </span>
                 </button>
 
-                {/* Mobile: answer inline under the active question */}
-                <AnimatePresence initial={false}>
-                  {active && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="overflow-hidden lg:hidden"
-                    >
-                      <div className="px-4 pb-4 pl-[3.75rem] pt-1 leading-relaxed text-muted">{q.answer}</div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </li>
             );
           })}
         </ol>
 
-        {/* Desktop: terminal answer panel */}
-        <div id={panelId} role="region" aria-live="polite" aria-label={item.question} className="about-terminal hidden lg:sticky lg:top-28 lg:block">
+        {/* Terminal answer panel follows the questions on mobile and sits beside them on desktop. */}
+        <div id={panelId} role="region" aria-live="polite" aria-label={item.question} className="about-terminal block lg:sticky lg:top-28">
           <div className="about-terminal-titlebar">
             <div className="about-terminal-controls">
               <span className="about-terminal-dot about-terminal-dot-red" />
