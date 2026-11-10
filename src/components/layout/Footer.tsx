@@ -48,7 +48,7 @@ function Logo() {
         alt="OSSEC logo"
         width={24}
         height={24}
-        priority
+        loading="lazy"
         className="h-12 w-12 object-contain"
       />
 

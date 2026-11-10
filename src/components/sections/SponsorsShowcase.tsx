@@ -17,7 +17,7 @@ function LogoTile({ sponsor }: { sponsor: Sponsor }) {
   return (
     <span className={`sp-tile ${sponsor.bg ? "sp-tile-bleed" : ""}`} style={sponsor.bg ? { background: sponsor.bg } : undefined}>
       {/* eslint-disable-next-line @next/next/no-img-element -- small static logos, already sized */}
-      <img src={sponsor.logo} alt={sponsor.name} decoding="async" draggable={false} />
+      <img src={sponsor.logo} alt={sponsor.name} loading="lazy" decoding="async" draggable={false} />
     </span>
   );
 }

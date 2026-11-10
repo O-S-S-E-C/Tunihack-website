@@ -104,7 +104,7 @@ const Navbar = () => {
               key={id}
               href={`#${id}`}
               onClick={id === 'home' ? goHome : undefined}
-              className={`group relative px-4 py-2 text-[14px] font-medium uppercase tracking-wide transition-colors duration-300 hover:text-white ${
+              className={`font-sans group relative px-4 py-2 text-[14px] font-medium uppercase tracking-wide [font-synthesis:none] transition-colors duration-300 hover:text-white ${
                 active === id ? 'text-white' : 'text-white/70'
               }`}
             >
@@ -154,7 +154,7 @@ const Navbar = () => {
                 key={id}
                 href={`#${id}`}
                 onClick={id === 'home' ? goHome : () => setOpen(false)}
-                className={`border-b border-white/5 py-3.5 text-[16px] font-medium uppercase tracking-wide ${
+                className={`font-sans border-b border-white/5 py-3.5 text-[16px] font-medium uppercase tracking-wide [font-synthesis:none] ${
                   active === id ? 'text-secondary' : 'text-white/70'
                 }`}
               >

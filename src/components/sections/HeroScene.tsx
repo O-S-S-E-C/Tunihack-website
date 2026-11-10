@@ -12,7 +12,9 @@ const CAMERA_Z = 9;
 const FOV = 40;
 const PENGUIN_HEIGHT = 4.0; // hologram height in local units
 const SPRITE_ASPECT = 937 / 1249; // width / height of /public/hero/tux-hologram.webp
-const SPRITE_URL = "/hero/tux-hologram.webp";
+const spriteUrlForViewport = () => {
+  return window.innerWidth <= 500 ? "/hero/tux-hologram-480.webp" : window.innerWidth <= 900 ? "/hero/tux-hologram-720.webp" : "/hero/tux-hologram.webp";
+};
 
 /* -------------------------------------------------------------------------- */
 /*  Hologram shader                                                            */
@@ -442,7 +444,7 @@ export default function HeroScene() {
         subtree: true,
       });
     };
-    new THREE.TextureLoader().load(SPRITE_URL, (tex) => {
+    new THREE.TextureLoader().load(spriteUrlForViewport(), (tex) => {
       if (disposed) { tex.dispose(); return; }
       tex.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
       texU.value = tex;
