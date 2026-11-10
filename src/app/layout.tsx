@@ -14,12 +14,9 @@ const geist = localFont({
 });
 
 const inter = localFont({
-  src: [
-    { path: "./fonts/inter-latin.woff2", weight: "100 900", style: "normal" },
-    { path: "./fonts/inter-latin-ext.woff2", weight: "100 900", style: "normal" },
-  ],
+  src: "./fonts/inter-latin.woff2",
   variable: "--font-inter",
-  display: "swap",
+  display: "block",
 });
 
 const jetbrains = localFont({
@@ -57,7 +54,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={cn("h-full", "antialiased", inter.variable, jetbrains.variable, barlowCondensed.variable, "font-sans", geist.variable)}
     >
       <head>
-        <link rel="preload" as="image" href="/hero/tux-hologram.webp" fetchPriority="high" />
+        <link rel="preload" as="image" href="/hero/tux-hologram-480.webp" type="image/webp" crossOrigin="anonymous" media="(max-width: 500px)" fetchPriority="high" />
+        <link rel="preload" as="image" href="/hero/tux-hologram-720.webp" type="image/webp" crossOrigin="anonymous" media="(min-width: 501px) and (max-width: 900px)" fetchPriority="high" />
+        <link rel="preload" as="image" href="/hero/tux-hologram.webp" type="image/webp" crossOrigin="anonymous" media="(min-width: 901px)" fetchPriority="high" />
       </head>
       <body className="relative isolate min-h-full flex flex-col">
         <SiteBackground />
