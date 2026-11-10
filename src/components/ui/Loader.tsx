@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import GlyphSonar from "@/components/ui/GlyphSonar";
-
 const MIN_MS = 1400;      // minimum time on screen so the loader animation can play
 const MAX_MS = 8000;      // never block the site longer than this
 const ONCE_PER_SESSION = false; // true = only on the first page load of a browser session
@@ -97,9 +96,13 @@ export default function Loader() {
 
       <div className="loader-stage">
         <div className="loader-logo">
-          <span className="loader-wordmark" aria-hidden="true"><span>TuniHack</span><small>12.0</small></span>
-          <span className="loader-lid loader-lid-l" />
-          <span className="loader-lid loader-lid-r" />
+          <img
+            src="/logo/TuniHackWordmark.webp"
+            alt="TuniHack Wordmark"
+            className="loader-wordmark-image"
+            fetchPriority="high"
+            draggable={false}
+          />
         </div>
 
         <div className="loader-meter" aria-hidden>

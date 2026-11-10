@@ -10,6 +10,7 @@ const geist = localFont({
     { path: "./fonts/geist-latin-ext.woff2", weight: "100 900", style: "normal" },
   ],
   variable: "--font-sans",
+  display: "swap",
 });
 
 const inter = localFont({
@@ -18,6 +19,7 @@ const inter = localFont({
     { path: "./fonts/inter-latin-ext.woff2", weight: "100 900", style: "normal" },
   ],
   variable: "--font-inter",
+  display: "swap",
 });
 
 const jetbrains = localFont({
@@ -26,6 +28,7 @@ const jetbrains = localFont({
     { path: "./fonts/jetbrains-mono-latin-ext.woff2", weight: "100 900", style: "normal" },
   ],
   variable: "--font-jetbrains",
+  display: "swap",
 });
 
 const barlowCondensed = localFont({
@@ -34,6 +37,7 @@ const barlowCondensed = localFont({
     { path: "./fonts/barlow-condensed-latin-700.woff2", weight: "700", style: "normal" },
   ],
   variable: "--font-barlow-condensed",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -52,6 +56,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={cn("h-full", "antialiased", inter.variable, jetbrains.variable, barlowCondensed.variable, "font-sans", geist.variable)}
     >
+      <head>
+        <link rel="preload" as="image" href="/hero/tux-hologram.webp" fetchPriority="high" />
+      </head>
       <body className="relative isolate min-h-full flex flex-col">
         <SiteBackground />
         <div aria-hidden="true" className="site-background-overlay pointer-events-none fixed inset-0 z-0" />

@@ -91,7 +91,7 @@ html {
 }
 
 body {
-  background: transparent;
+  background: radial-gradient(ellipse at 50% 20%, #0a1230 0%, #040918 70%);
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
 }
@@ -673,7 +673,7 @@ html[data-scene-section="program"] .site-background-overlay {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #010204;
+  background: #040918;
   transition: opacity 0.7s ease 0.15s;
 }
 .loader-leave { opacity: 0; pointer-events: none; }
@@ -709,23 +709,16 @@ html[data-scene-section="program"] .site-background-overlay {
   0%, 100% { transform: scale(0.9); }
   50%      { transform: scale(1.08); }
 }
-.loader-wordmark {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #e8f8ff;
-  font-family: "Barlow Condensed", var(--font-sans), sans-serif;
-  font-size: clamp(3.4rem, 13vmin, 8rem);
-  font-weight: 900;
-  line-height: 0.78;
-  letter-spacing: -0.075em;
-  text-shadow: 0 0 12px #2563eb, 0 0 32px #22d3ee, 0 0 68px rgba(34, 211, 238, 0.65);
+.loader-wordmark-image {
+  display: block;
+  width: min(82vw, 580px);
+  height: auto;
+  max-height: 32vmin;
+  margin: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px #2563eb) drop-shadow(0 0 28px rgba(34, 211, 238, 0.72));
   user-select: none;
 }
-.loader-wordmark small { margin-top: 0.35em; font-size: 0.3em; letter-spacing: 0.12em; color: #22d3ee; }
 
 /* eyelids over each pupil (positions are % of the artwork) */
 .loader-lid {
@@ -763,7 +756,6 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
 
 @media (prefers-reduced-motion: reduce) {
   .loader-logo { animation: none; }
-  .loader-lid { animation: none; transform: scaleY(0); }
   .loader-leave .loader-stage { transform: none; }
 }
 
@@ -773,6 +765,7 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
   }
   body {
     @apply bg-background text-foreground;
+  background: radial-gradient(ellipse at 50% 20%, #0a1230 0%, #040918 70%);
   }
   html {
     @apply font-sans;

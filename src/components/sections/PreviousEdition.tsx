@@ -95,7 +95,7 @@ export default function PreviousEdition() {
             className="mt-8"
             animationStyle="from-center"
             videoSrc="/videos/tunihack-previous-edition.mp4"
-            thumbnailSrc="/videos/tunihack-previous-edition-poster.jpg"
+            thumbnailSrc="/videos/tunihack-previous-edition-poster.webp"
             thumbnailAlt="TuniHack previous edition: participants in the amphitheatre"
           />
         </div>

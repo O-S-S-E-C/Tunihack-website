@@ -9,6 +9,7 @@
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import { Play, XIcon } from "lucide-react"
+import Image from "next/image"
 import { AnimatePresence, motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
@@ -101,12 +102,12 @@ export function HeroVideoDialog({
         className="group relative block w-full cursor-pointer border-0 bg-transparent p-0"
         onClick={() => setIsVideoOpen(true)}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element -- static poster, already sized */}
-        <img
+        <Image
           src={thumbnailSrc}
           alt={thumbnailAlt}
           width={1920}
           height={1080}
+          priority
           className="w-full rounded-md border shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]"
         />
         <div className="absolute inset-0 flex scale-[0.9] items-center justify-center rounded-2xl transition-all duration-200 ease-out group-hover:scale-100">
@@ -167,6 +168,7 @@ export function HeroVideoDialog({
                       controls
                       autoPlay
                       playsInline
+                      preload="none"
                       className="mt-0 size-full rounded-2xl bg-black"
                     />
                   </div>
