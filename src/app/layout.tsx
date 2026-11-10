@@ -9,7 +9,7 @@ const geist = localFont({
     { path: "./fonts/geist-latin.woff2", weight: "100 900", style: "normal" },
     { path: "./fonts/geist-latin-ext.woff2", weight: "100 900", style: "normal" },
   ],
-  variable: "--font-sans",
+  variable: "--font-geist",
   display: "swap",
 });
 

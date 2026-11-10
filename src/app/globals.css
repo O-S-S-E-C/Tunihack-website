@@ -196,7 +196,7 @@ html[data-scene-section="program"] .site-background-overlay {
 }
 .pg-day-heading h3 {
   color: #f8fafc;
-  font-family: var(--font-sans), sans-serif; /* Geist, same as the TuniHack / PitchHack wordmarks */
+  font-family: var(--font-geist), sans-serif; /* Geist, same as the TuniHack / PitchHack wordmarks */
   font-size: clamp(2rem, 4vw, 3.25rem);
   font-weight: 900;
   letter-spacing: -0.075em;
