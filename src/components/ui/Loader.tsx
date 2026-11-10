@@ -100,7 +100,6 @@ export default function Loader() {
             src="/logo/TuniHackWordmark.webp"
             alt="TuniHack Wordmark"
             className="loader-wordmark-image"
-            fetchPriority="high"
             draggable={false}
           />
         </div>
