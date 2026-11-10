@@ -696,53 +696,28 @@ html[data-scene-section="program"] .site-background-overlay {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  gap: 1.25rem;
 }
 
 .loader-logo {
   position: relative;
-  width: min(74vmin, 600px);
-  aspect-ratio: 1;
-  animation: loader-breathe 3.6s ease-in-out infinite;
-}
-@keyframes loader-breathe {
-  0%, 100% { transform: scale(0.9); }
-  50%      { transform: scale(1.08); }
+  display: flex;
+  width: min(82vw, 560px);
+  height: min(30vh, 220px);
+  align-items: center;
+  justify-content: center;
 }
 .loader-wordmark-image {
   display: block;
-  width: min(82vw, 580px);
+  width: 100%;
   height: auto;
-  max-height: 32vmin;
-  margin: auto;
+  max-height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 0 12px #2563eb) drop-shadow(0 0 28px rgba(34, 211, 238, 0.72));
+  filter: none;
   user-select: none;
-}
-
-/* eyelids over each pupil (positions are % of the artwork) */
-.loader-lid {
-  position: absolute;
-  top: 46.6%;
-  width: 4.5%;
-  height: 4.9%;
-  background: #00030a;
-  border-radius: 0 0 45% 45% / 0 0 35% 35%;
-  box-shadow: 0 1px 0 rgba(150, 215, 255, 0.55);
-  transform-origin: top center;
-  transform: scaleY(1);
-  animation: loader-blink 3.6s ease-in-out infinite;
-}
-.loader-lid-l { left: 41.4%; }
-.loader-lid-r { left: 54.5%; }
-@keyframes loader-blink {
-  0%   { transform: scaleY(1); }
-  16%  { transform: scaleY(0); }
-  56%  { transform: scaleY(0); }
-  61%  { transform: scaleY(1); }
-  67%  { transform: scaleY(0); }
-  92%  { transform: scaleY(0); }
-  100% { transform: scaleY(1); }
 }
 
 .loader-meter { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
@@ -755,7 +730,6 @@ html[data-scene-section="program"] .site-background-overlay {
 html[data-loading="on"] .hero-rise { animation-play-state: paused; }
 
 @media (prefers-reduced-motion: reduce) {
-  .loader-logo { animation: none; }
   .loader-leave .loader-stage { transform: none; }
 }
 
