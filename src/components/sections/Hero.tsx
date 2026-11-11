@@ -3,9 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import DecryptText from '@/components/ui/DecryptText';
 
 const TAGLINES = [
-  'Build. Break. Defend.',
-  'Where cybersecurity meets artificial intelligence.',
-  'Teach machines to think. Teach systems to resist.',
+  'Build. Pitch. Win.',
+  'Where bold ideas meet 24 hours of code.',
+  'One theme. One night. One shot.',
 ];
 
 function DynamicTagline() {
@@ -94,7 +94,7 @@ const Hero = () => {
         </p>
 
         <p className="hero-copy hero-rise mt-1 font-label text-base uppercase tracking-[0.12em] text-[#bed0ee]" style={{ animationDelay: '2.05s' }}>
-          Cybersecurity × Artificial Intelligence
+          Theme to be revealed soon
         </p>
 
         <div className="hero-rise mt-8 flex flex-wrap gap-4" style={{ animationDelay: '2.2s' }}>

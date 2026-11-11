@@ -1,6 +1,6 @@
 # TuniHack 12.0 Website
 
-The official website for TuniHack 12.0, Tunisia's national hackathon on cybersecurity and artificial intelligence, organized by OSSEC at ENSI.
+The official website for TuniHack 12.0, Tunisia's national hackathon, organized by OSSEC at ENSI.
 
 ## Development
 

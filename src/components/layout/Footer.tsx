@@ -4,7 +4,7 @@ import Image from "next/image";
 const OSSEC = {
   name: "OSSEC",
   description:
-    "OSSEC the Open Source Security club at ENSI. We organise TuniHack, Tunisia's national hackathon on cybersecurity and artificial intelligence.",
+    "OSSEC, the Open-Source Software ENSI Club. We organise TuniHack, Tunisia's national hackathon.",
   email: "ossec@ensi-uma.tn",
   location: "ENSI, Tunisia",
   socials: [
