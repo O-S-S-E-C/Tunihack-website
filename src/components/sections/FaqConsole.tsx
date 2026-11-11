@@ -55,7 +55,7 @@ export default function FaqConsole() {
   return (
     <div className="mt-12">
       {/* Group tabs with a sliding highlight */}
-      <div role="tablist" aria-label="FAQ categories" className="inline-flex max-w-full gap-1 rounded-full border border-white/10 bg-white/[0.03] p-1 backdrop-blur-md">
+      <div role="tablist" aria-label="FAQ categories" className="inline-flex max-w-full gap-1 overflow-x-auto rounded-full border border-white/10 bg-white/[0.03] p-1 backdrop-blur-md">
         {FAQ.map((g, i) => (
           <button
             key={g.title}
@@ -120,7 +120,7 @@ export default function FaqConsole() {
         </ol>
 
         {/* Terminal answer panel follows the questions on mobile and sits beside them on desktop. */}
-        <div id={panelId} role="region" aria-live="polite" aria-label={item.question} className="about-terminal block lg:sticky lg:top-28">
+        <div id={panelId} role="region" aria-live="polite" aria-label={item.question} className="about-terminal w-full min-w-0 max-w-full lg:sticky lg:top-28">
           <div className="about-terminal-titlebar">
             <div className="about-terminal-controls">
               <span className="about-terminal-dot about-terminal-dot-red" />
@@ -130,7 +130,7 @@ export default function FaqConsole() {
             <span className="about-terminal-title">{`faq@tunihack: ~/${slug(TAB_LABELS[group.title] ?? group.title)}`}</span>
             <span aria-hidden="true" />
           </div>
-          <div className="min-h-[19rem] p-6 font-mono text-[0.95rem] leading-7 text-slate-200">
+          <div className="min-h-[19rem] p-4 font-mono text-sm leading-7 text-slate-200 sm:p-6 sm:text-[0.95rem]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={item.question}

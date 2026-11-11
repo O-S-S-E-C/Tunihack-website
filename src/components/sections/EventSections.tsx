@@ -14,16 +14,26 @@ export default function EventSections() {
         </div>
       </section>
 
-      <section id="register" className="starfield px-6 md:px-16 py-32">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="section-kicker mb-5">Join the next build</p>
-          <h2 className="about-heading">Register for TuniHack<span className="text-secondary">.</span></h2>
-          <p className="mx-auto mt-6 max-w-2xl text-muted leading-relaxed">Bring your ideas, your team, and your curiosity. Build something real with Tunisia&apos;s cybersecurity and AI community.</p>
-          <div className="flex justify-center gap-4 mt-10">
-            <button type="button" className="lime-button rounded-xl px-7 py-4 text-lg">Register Now</button>
+      <section id="register" className="register starfield">
+        <div className="register-stars" aria-hidden="true" />
+        <div className="register-inner">
+          <p className="register-kicker">Join the next build</p>
+          <h2 className="register-title">Register for TuniHack<span className="dot">.</span></h2>
+          <p className="register-tagline"><strong>TuniHack 12.0:</strong> Dare to go beyond.</p>
+          <p className="register-text">Challenge the ordinary, create the extraordinary, and shape what comes next.</p>
+          <div className="register-actions">
+            <a
+              href="https://docs.google.com/forms/d/1YrrZv_gyFh36HbVz5H8YSV0V9IbwOmfGmLHWB5akm6o/edit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta cta-primary"
+            >
+              Register Now
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </a>
             <a
               href="#home"
-              className="outline-button rounded-xl px-7 py-4 text-lg"
+              className="cta cta-secondary"
               onClick={(event) => {
                 event.preventDefault();
                 window.scrollTo({ top: 0, behavior: "smooth" });
