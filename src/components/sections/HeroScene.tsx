@@ -276,7 +276,7 @@ export default function HeroScene() {
     }
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const dpr = Math.min(Math.max(window.devicePixelRatio || 1, 1), 2);
+    const dpr = Math.min(Math.max(window.devicePixelRatio || 1, 1), window.innerWidth < 700 ? 1.5 : 2);
     renderer.setPixelRatio(dpr);
     renderer.setClearColor(0x000000, 0);
     const canvas = renderer.domElement;

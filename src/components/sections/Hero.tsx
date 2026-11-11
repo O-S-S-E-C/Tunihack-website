@@ -44,14 +44,14 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" ref={ref} className="relative z-10 h-screen overflow-hidden bg-transparent">
+    <section id="home" ref={ref} className="relative z-10 min-h-screen overflow-hidden bg-transparent">
       {/* 3D space: stars, floating wireframes, penguin hologram */}
       <div aria-hidden className="hero-glow pointer-events-none absolute inset-0" />
 
-      <div className="hero-inner relative z-10 flex h-full flex-col justify-start pb-12 pl-[clamp(1.5rem,5vw,5rem)] pr-6 pt-24 md:justify-end md:pb-14 md:pt-28">
+      <div className="hero-inner relative z-10 flex min-h-screen flex-col justify-start px-6 pb-12 pt-24 md:justify-end md:px-12 md:pb-14 md:pt-28 xl:px-20">
         <h1
           aria-label="TuniHack 12.0"
-          className="hero-title select-none font-sans font-black leading-[0.95] tracking-[-0.055em] [--step:clamp(0.75rem,4vw,4.5rem)] [font-size:clamp(2.5rem,min(7vw,11vh),6.25rem)]"
+          className="hero-title select-none font-sans text-5xl font-black leading-[0.95] tracking-[-0.055em] sm:text-6xl md:text-7xl xl:text-8xl [--step:1.5rem] md:[--step:2.5rem] xl:[--step:4rem]"
         >
           <span className="block">
             <DecryptText text="Tuni" delay={300} duration={900} />
@@ -98,7 +98,7 @@ const Hero = () => {
         </p>
 
         <div className="hero-rise mt-8 flex flex-wrap gap-4" style={{ animationDelay: '2.2s' }}>
-          <a href="#register" className="lime-button rounded-md px-6 py-3 text-sm font-semibold">
+          <a href="https://docs.google.com/forms/d/1YrrZv_gyFh36HbVz5H8YSV0V9IbwOmfGmLHWB5akm6o/edit" target="_blank" rel="noopener noreferrer" className="lime-button rounded-md px-6 py-3 text-sm font-semibold">
             Register Now →
           </a>
           <a href="#about" className="outline-button rounded-md px-6 py-3 text-sm font-semibold">

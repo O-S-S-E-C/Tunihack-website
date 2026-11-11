@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import EventRow from "@/components/about/EventRow";
-import Manifesto from "@/components/about/Manifesto";
 import { useInView } from "@/hooks/useInView";
 import Programme from "@/components/sections/Programme";
 // Previous graph version: "@/components/sections/Sponsors" (kept for now, not rendered)
@@ -100,8 +99,6 @@ export default function About() {
           <h2 className="about-heading">ABOUT TUNIHACK</h2>
           <div className="about-heading-rule" aria-hidden="true" />
         </div>
-
-        <Manifesto />
 
         <EventRow
           terminalTitle={TUNIHACK_TERMINAL_TITLE}

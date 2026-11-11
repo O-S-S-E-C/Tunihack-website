@@ -82,8 +82,8 @@ const Navbar = () => {
         }`}
       />
 
-      <nav className="nav-enter relative mx-auto flex h-[72px] max-w-[1400px] items-center justify-between px-6 lg:px-10">
-        <a href="#home" onClick={goHome} className="flex items-center gap-3 transition-opacity hover:opacity-80">
+      <nav className="nav-enter relative mx-auto flex h-[72px] w-full max-w-7xl items-center justify-between px-4 md:px-6">
+        <a href="#home" onClick={goHome} className="flex shrink-0 items-center gap-3 whitespace-nowrap transition-opacity hover:opacity-80">
           <Image
             src="/logo/TuniHackWordmark.webp"
             alt="TuniHack Logo"
@@ -91,26 +91,26 @@ const Navbar = () => {
             height={64}
             loading="eager"
             priority
-            className="h-14 w-auto object-contain brightness-150"
+            className="h-12 w-auto object-contain brightness-150 xl:h-14"
           />
-          <span className="font-label text-2xl font-bold tracking-[0.02em] text-foreground">
+          <span className="font-label whitespace-nowrap text-lg font-bold tracking-[0.02em] text-foreground sm:text-xl xl:text-2xl">
             TuniHack 12.0
           </span>
         </a>
 
-        <div className="hidden items-center gap-0.5 lg:flex">
+        <div className="hidden min-w-0 items-center gap-1 lg:flex xl:gap-2 2xl:gap-4">
           {LINKS.map(({ id, label }) => (
             <a
               key={id}
               href={`#${id}`}
               onClick={id === 'home' ? goHome : undefined}
-              className={`font-sans group relative px-4 py-2 text-[14px] font-medium uppercase tracking-wide [font-synthesis:none] transition-colors duration-300 hover:text-white ${
+              className={`font-sans group relative whitespace-nowrap px-1 py-2 text-xs font-medium uppercase tracking-wide [font-synthesis:none] transition-colors duration-300 hover:text-white xl:px-1.5 xl:text-[13px] 2xl:px-2 2xl:text-sm ${
                 active === id ? 'text-white' : 'text-white/70'
               }`}
             >
               {label}
               <span
-                className={`absolute inset-x-4 -bottom-px h-px origin-left bg-secondary transition-transform duration-300 ease-out ${
+                className={`absolute inset-x-1 -bottom-px h-px origin-left bg-secondary transition-transform duration-300 ease-out xl:inset-x-1.5 ${
                   active === id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`}
               />
@@ -120,8 +120,10 @@ const Navbar = () => {
           <div className="ml-2 mr-4 h-4 w-px shrink-0 bg-white/30" />
 
           <a
-            href="#register"
-            className="lime-button shrink-0 rounded-full px-8 py-2.5 text-[14px] font-bold uppercase tracking-widest"
+            href="https://docs.google.com/forms/d/1YrrZv_gyFh36HbVz5H8YSV0V9IbwOmfGmLHWB5akm6o/edit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="lime-button ml-1 shrink-0 whitespace-nowrap rounded-full px-3 py-2 text-xs font-bold uppercase tracking-wide xl:px-4 2xl:px-6 2xl:text-sm 2xl:tracking-widest"
           >
             Register Now
           </a>
@@ -132,7 +134,7 @@ const Navbar = () => {
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen(!open)}
-          className="relative z-10 p-2 text-white lg:hidden"
+          className="relative z-10 shrink-0 p-2 text-white lg:hidden"
         >
           <div className="flex w-5 flex-col gap-[5px]">
             <span className={`block h-[1.5px] bg-current transition-transform duration-300 ${open ? 'translate-y-[6.5px] rotate-45' : ''}`} />
@@ -162,7 +164,9 @@ const Navbar = () => {
               </a>
             ))}
             <a
-              href="#register"
+              href="https://docs.google.com/forms/d/1YrrZv_gyFh36HbVz5H8YSV0V9IbwOmfGmLHWB5akm6o/edit"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
               className="lime-button mt-5 w-fit rounded-full px-10 py-3.5 text-[15px] font-bold uppercase tracking-widest"
             >

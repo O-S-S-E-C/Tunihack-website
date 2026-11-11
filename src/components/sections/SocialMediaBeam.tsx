@@ -41,9 +41,9 @@ const SocialNode = forwardRef<HTMLAnchorElement, SocialNodeProps>(
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Open OSSEC on ${label}`}
-      className={`group absolute z-20 flex items-center gap-3 rounded-2xl border border-white/10 bg-[#101A2E]/90 p-3 pr-5 text-white shadow-[0_15px_45px_rgba(18,33,80,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#2A7999]/35 hover:shadow-[0_20px_55px_rgba(42,121,153,0.17)] ${className}`}
+      className={`group absolute z-20 flex items-center gap-3 rounded-2xl border border-border bg-card/90 p-3 pr-5 text-foreground shadow-[0_15px_45px_rgba(18,33,80,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-secondary/40 hover:shadow-[0_20px_55px_rgba(37,99,235,0.2)] ${className}`}
     >
-      <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#2A7999]/10 text-[#2A7999] transition-all duration-300 group-hover:bg-[#2A7999] group-hover:text-white">
+      <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-secondary/10 text-secondary transition-all duration-300 group-hover:bg-secondary group-hover:text-secondary-foreground">
         {icon}
       </span>
 
@@ -52,7 +52,7 @@ const SocialNode = forwardRef<HTMLAnchorElement, SocialNodeProps>(
         <span className="mt-0.5 block text-xs text-white/45">{username}</span>
       </span>
 
-      <span className="ml-1 hidden text-sm text-[#2A7999] transition-transform duration-300 group-hover:translate-x-1 sm:block">
+      <span className="ml-1 hidden text-sm text-secondary transition-transform duration-300 group-hover:translate-x-1 sm:block">
         ↗
       </span>
     </a>
@@ -62,9 +62,9 @@ const SocialNode = forwardRef<HTMLAnchorElement, SocialNodeProps>(
 SocialNode.displayName = "SocialNode";
 
 const beamColors = {
-  pathColor: "rgba(42, 121, 153, 0.18)",
-  gradientStartColor: "#122150",
-  gradientStopColor: "#2A7999",
+  pathColor: "rgba(37, 99, 235, 0.2)",
+  gradientStartColor: "#2563eb",
+  gradientStopColor: "#22d3ee",
 };
 
 export default function SocialMediaBeam() {
@@ -77,11 +77,11 @@ export default function SocialMediaBeam() {
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto h-[430px] w-full max-w-[720px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] shadow-[0_25px_80px_rgba(18,33,80,0.08)] backdrop-blur-xl"
+      className="relative mx-auto h-[430px] w-full max-w-[720px] overflow-hidden rounded-[2rem] border border-border bg-card/40 shadow-[0_25px_80px_rgba(18,33,80,0.08)] backdrop-blur-xl"
     >
       {/* Background decoration */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:radial-gradient(#2A7999_1px,transparent_1px)] [background-size:22px_22px]" />
-      <div className="pointer-events-none absolute left-1/2 top-1/2 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2A7999]/12 blur-[80px]" />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:radial-gradient(#22d3ee_1px,transparent_1px)] [background-size:22px_22px]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[80px]" />
 
       <SocialNode
         ref={facebookRef}
@@ -113,9 +113,9 @@ export default function SocialMediaBeam() {
       {/* Central OSSEC node */}
       <div
         ref={centerRef}
-        className="absolute left-1/2 top-1/2 z-20 flex size-32 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-[2rem] border border-white/10 bg-[#101A2E]/95 p-4 shadow-[0_22px_65px_rgba(42,121,153,0.22)] sm:size-36"
+        className="absolute left-1/2 top-1/2 z-20 flex size-32 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-[2rem] border border-border bg-card/95 p-4 shadow-[0_22px_65px_rgba(37,99,235,0.22)] sm:size-36"
       >
-        <div className="pointer-events-none absolute inset-2 animate-[spin_25s_linear_infinite] rounded-[1.6rem] border border-dashed border-[#2A7999]/25" />
+        <div className="pointer-events-none absolute inset-2 animate-[spin_25s_linear_infinite] rounded-[1.6rem] border border-dashed border-secondary/25" />
 
         <div className="relative z-10 flex flex-col items-center justify-center">
           <Image
@@ -125,7 +125,7 @@ export default function SocialMediaBeam() {
             height={65}
             className="block h-auto max-h-14 w-auto object-contain sm:max-h-16"
           />
-          <span className="mt-2 whitespace-nowrap text-[7px] font-semibold uppercase tracking-[0.13em] text-[#2A7999] sm:text-[8px]">
+          <span className="mt-2 whitespace-nowrap text-[7px] font-semibold uppercase tracking-[0.13em] text-secondary sm:text-[8px]">
             Connect with us
           </span>
         </div>
