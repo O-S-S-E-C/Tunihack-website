@@ -23,9 +23,8 @@ export default function EventSections() {
           <p className="register-text">Challenge the ordinary, create the extraordinary, and shape what comes next.</p>
           <div className="register-actions">
             <a
-              href="https://docs.google.com/forms/d/1YrrZv_gyFh36HbVz5H8YSV0V9IbwOmfGmLHWB5akm6o/edit"
-              target="_blank"
-              rel="noopener noreferrer"
+              role="link"
+              aria-disabled="true"
               className="cta cta-primary"
             >
               Register Now

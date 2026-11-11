@@ -26,7 +26,6 @@ const days: { id: string; label: string; date: string; events: ProgrammeEvent[] 
       { time: "17:30 – 18:30", title: "Murder Game", detail: "Fun group game" },
       { time: "18:30 – 20:00", title: "Activities", detail: "Side games and entertainment" },
       { time: "20:00 – 21:00", title: "Dinner Break", detail: "Evening meal break" },
-      { time: "21:00 – 00:00", title: "Chess Tournament", detail: "Friendly competition" },
       { time: "00:00 → Overnight", title: "CTF Start", detail: "Capture The Flag tournament begins" },
     ],
   },

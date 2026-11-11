@@ -120,9 +120,8 @@ const Navbar = () => {
           <div className="ml-2 mr-4 h-4 w-px shrink-0 bg-white/30" />
 
           <a
-            href="https://docs.google.com/forms/d/1YrrZv_gyFh36HbVz5H8YSV0V9IbwOmfGmLHWB5akm6o/edit"
-            target="_blank"
-            rel="noopener noreferrer"
+            role="link"
+            aria-disabled="true"
             className="lime-button ml-1 shrink-0 whitespace-nowrap rounded-full px-3 py-2 text-xs font-bold uppercase tracking-wide xl:px-4 2xl:px-6 2xl:text-sm 2xl:tracking-widest"
           >
             Register Now
@@ -164,9 +163,8 @@ const Navbar = () => {
               </a>
             ))}
             <a
-              href="https://docs.google.com/forms/d/1YrrZv_gyFh36HbVz5H8YSV0V9IbwOmfGmLHWB5akm6o/edit"
-              target="_blank"
-              rel="noopener noreferrer"
+              role="link"
+              aria-disabled="true"
               onClick={() => setOpen(false)}
               className="lime-button mt-5 w-fit rounded-full px-10 py-3.5 text-[15px] font-bold uppercase tracking-widest"
             >

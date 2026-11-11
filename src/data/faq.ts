@@ -44,10 +44,10 @@ export const FAQ: FaqGroup[] = [
       {
         question: "What else happens during the weekend?",
         answer:
-          "Conferences, hands-on workshops, a round table, a music show and activities. Overnight, there are side competitions: competitive programming and chess, and a CTF from midnight to 5 a.m.",
+          "Conferences, hands-on workshops, a round table, a music show and activities. Overnight, there are side competitions: competitive programming, and a CTF from midnight to 5 a.m.",
       },
       {
-        question: "How do I join the chess, CTF and competitive programming competitions?",
+        question: "How do I join the CTF and competitive programming competitions?",
         answer:
           "Each one has its own registration form, separate from TuniHack. They're free, and you can join as an individual.",
       },

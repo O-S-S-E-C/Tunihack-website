@@ -23,7 +23,7 @@ const NAVIGATE = [
 ];
 
 const QUICK_LINKS = [
-  { label: "Register Now", href: "https://docs.google.com/forms/d/1YrrZv_gyFh36HbVz5H8YSV0V9IbwOmfGmLHWB5akm6o/edit" },
+  { label: "Register Now", href: "" }, // registration link disabled for now,
   { label: "Previous Edition", href: "#previousedition" },
   { label: "Contact Us", href: `#event` },
 ];
@@ -89,7 +89,7 @@ const Footer = () => {
           <h3 className="text-sm font-bold uppercase tracking-wider text-foreground/90">Quick Links</h3>
           <ul className="mt-6 space-y-3 text-sm">
             {QUICK_LINKS.map((l) => (
-              <li key={l.label}><a href={l.href} target={l.href.startsWith("http") ? "_blank" : undefined} rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined} className="text-muted transition-colors hover:text-secondary">{l.label}</a></li>
+              <li key={l.label}><a href={l.href || undefined} aria-disabled={l.href ? undefined : true} target={l.href.startsWith("http") ? "_blank" : undefined} rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined} className="text-muted transition-colors hover:text-secondary">{l.label}</a></li>
             ))}
           </ul>
         </div>
