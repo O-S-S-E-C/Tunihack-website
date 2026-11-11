@@ -35,7 +35,7 @@ export const FAQ: FaqGroup[] = [
       {
         question: "What is PitchHack?",
         answer:
-          "PitchHack is a marathon born within TuniHack. Participants choose a problem tied to the event's theme, design a solution and pitch it live to the jury. There is no coding sprint: it's about the idea, the vision and how well you sell it.",
+          "PitchHack is a competition born within TuniHack. Participants choose a problem tied to the event's theme, design a solution and pitch it live to the jury. There is no coding sprint: it's about the idea, the vision and how well you sell it.",
       },
       {
         question: "How many people are in a team?",

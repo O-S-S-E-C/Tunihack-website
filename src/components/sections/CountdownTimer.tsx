@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 
-const targetDate = new Date('2026-11-28T00:00:00').getTime();
+// Doors open: registration at 07:30 on 28 November, Tunisia time (UTC+1), whatever the visitor's timezone.
+const targetDate = new Date('2026-11-28T07:30:00+01:00').getTime();
 
 const TimeUnit = ({ value, label }: { value: number; label: string }) => (
   <div className="flex flex-col items-center justify-center p-4 min-w-[100px]">

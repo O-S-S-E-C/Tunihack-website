@@ -8,7 +8,7 @@ export const TUNIHACK_TERMINAL_LINES: TerminalLine[] = [
   { type: "command", text: "TuniHack 12.0 is coming!" },
   {
     type: "output",
-    text: "Organized by the Open-Source Software ENSI Club (OSSEC), TuniHack is a 24-hour hackathon that brings together the brightest students from Tunisian engineering schools.",
+    text: "Organized by the Open-Source Software ENSI Club (OSSEC), TuniHack is a 24-hour hackathon that brings together the brightest students from universities and engineering schools across Tunisia.",
   },
   {
     type: "output",
@@ -19,7 +19,7 @@ export const TUNIHACK_TERMINAL_LINES: TerminalLine[] = [
 export const PITCHHACK_TERMINAL_TITLE = "pitchhack@ensi: ~/vision";
 export const PITCHHACK_TERMINAL_LINES: TerminalLine[] = [
   { type: "command", text: "Got an idea? Pitch it." },
-  { type: "output", text: "PitchHack is a marathon born within TuniHack 12.0." },
+  { type: "output", text: "PitchHack is a competition born within TuniHack 12.0." },
   {
     type: "output",
     text: "Participants choose a problem tied to the event’s theme, design a solution, and present it live in front of our jury.",

@@ -17,9 +17,10 @@ const days: { id: string; label: string; date: string; events: ProgrammeEvent[] 
     events: [
       { time: "07:30 – 08:30", title: "Registration", detail: "Participant check-in" },
       { time: "08:30 – 09:30", title: "Opening Ceremony", detail: "Official launch of TuniHack" },
+      { time: "09:30", title: "Hackathon Start", detail: "Theme reveal, then the 24-hour build begins" },
       { time: "10:00 – 12:00", title: "Workshop 1 & Workshop 2", detail: "Parallel learning sessions", parallel: true },
       { time: "12:00 – 13:00", title: "Lunch Break", detail: "Meal and networking" },
-      { time: "14:00 – 17:00", title: "Contest CP", detail: "Competitive programming tournament", parallel: true },
+      { time: "14:00 – 17:00", title: "Competitive Programming Contest", detail: "Competitive programming tournament", parallel: true },
       { time: "14:30 – 16:30", title: "Workshop 3", detail: "Technical workshop", parallel: true },
       { time: "17:00 – 17:30", title: "Coffee Break", detail: "Refreshments" },
       { time: "17:30 – 18:30", title: "Murder Game", detail: "Fun group game" },
@@ -35,6 +36,7 @@ const days: { id: string; label: string; date: string; events: ProgrammeEvent[] 
     date: "29 NOV",
     events: [
       { time: "08:00 – 09:00", title: "Coffee Break", detail: "Morning refreshments" },
+      { time: "10:00", title: "TuniHack Submission", detail: "Deadline for teams to submit their projects" },
       { time: "10:00 – 12:00", title: "PitchHack Presentation", detail: "Live pitches in front of industry judges" },
       { time: "12:00 – 13:00", title: "Lunch Break", detail: "Midday break" },
       { time: "13:00 – 16:00", title: "TuniHack Presentation", detail: "Final project demos and pitches" },
@@ -111,7 +113,7 @@ function ProgrammeDay({ day, index }: { day: (typeof days)[number]; index: numbe
         <div className="pg-cap" aria-hidden="true">
           <i />
           <span>
-            {day.label} <b>ROOT</b>
+            {day.label} <b>START</b>
           </span>
         </div>
 
