@@ -98,7 +98,7 @@ const Hero = () => {
         </p>
 
         <div className="hero-rise mt-8 flex flex-wrap gap-4" style={{ animationDelay: '2.2s' }}>
-          <a role="link" aria-disabled="true" className="lime-button rounded-md px-6 py-3 text-sm font-semibold">
+          <a href="#register" className="lime-button rounded-md px-6 py-3 text-sm font-semibold">
             Register Now →
           </a>
           <a href="#about" className="outline-button rounded-md px-6 py-3 text-sm font-semibold">
