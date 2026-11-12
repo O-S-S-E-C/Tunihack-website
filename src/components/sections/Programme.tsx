@@ -37,7 +37,6 @@ const days: { id: string; label: string; date: string; events: ProgrammeEvent[] 
       { time: "08:00 – 09:00", title: "Coffee Break", detail: "Morning refreshments" },
       { time: "10:00", title: "TuniHack Submission", detail: "Deadline for teams to submit their projects" },
       { time: "10:00 – 12:00", title: "PitchHack Presentation", detail: "Live pitches in front of industry judges" },
-      { time: "12:00 – 13:00", title: "Lunch Break", detail: "Midday break" },
       { time: "13:00 – 16:00", title: "TuniHack Presentation", detail: "Final project demos and pitches" },
       { time: "16:00 – 17:00", title: "Closing Ceremony", detail: "Winners announcement and closing" },
     ],
