@@ -2,6 +2,22 @@
 
 import FaqConsole from "@/components/sections/FaqConsole";
 import SocialMediaBeam from "@/components/sections/SocialMediaBeam";
+import { PITCHHACK_FORM_URL, TUNIHACK_FORM_URL } from "@/data/registration";
+import type { ReactNode } from "react";
+
+function ArrowIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+  );
+}
+
+// Opens the form in a new tab; with no URL it stays visible but disabled.
+function RegisterLink({ href, className, children }: { href: string; className: string; children: ReactNode }) {
+  if (!href) {
+    return <a role="link" aria-disabled="true" className={className}>{children}</a>;
+  }
+  return <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}</a>;
+}
 
 export default function EventSections() {
   return (
@@ -22,14 +38,14 @@ export default function EventSections() {
           <p className="register-tagline"><strong>TuniHack 12.0:</strong> Dare to go beyond.</p>
           <p className="register-text">Challenge the ordinary, create the extraordinary, and shape what comes next.</p>
           <div className="register-actions">
-            <a
-              role="link"
-              aria-disabled="true"
-              className="cta cta-primary"
-            >
-              Register Now
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-            </a>
+            <RegisterLink href={TUNIHACK_FORM_URL} className="cta cta-primary">
+              Register for TuniHack
+              <ArrowIcon />
+            </RegisterLink>
+            <RegisterLink href={PITCHHACK_FORM_URL} className="cta cta-primary">
+              Register for PitchHack
+              <ArrowIcon />
+            </RegisterLink>
             <a
               href="#home"
               className="cta cta-secondary"
