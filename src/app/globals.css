@@ -99,6 +99,17 @@ body {
 .site-background-overlay {
   z-index: 0;
   background: linear-gradient(180deg, rgb(4 9 24 / 0%) 0%, rgb(4 9 24 / 2%) 45%, rgb(4 9 24 / 10%) 75%, rgb(4 9 24 / 16%) 100%);
+  backdrop-filter: blur(0px);
+  transition: backdrop-filter 400ms ease;
+}
+
+/* Soften the background scene slightly once the user starts scrolling. */
+html[data-scrolled="true"] .site-background-overlay {
+  backdrop-filter: blur(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-background-overlay { transition: none; }
 }
 
 html[data-scene-section="program"] .site-background-overlay {
