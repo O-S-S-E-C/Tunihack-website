@@ -120,8 +120,7 @@ const Navbar = () => {
           <div className="ml-2 mr-4 h-4 w-px shrink-0 bg-white/30" />
 
           <a
-            role="link"
-            aria-disabled="true"
+            href="#register"
             className="lime-button ml-1 shrink-0 whitespace-nowrap rounded-full px-3 py-2 text-xs font-bold uppercase tracking-wide xl:px-4 2xl:px-6 2xl:text-sm 2xl:tracking-widest"
           >
             Register Now
@@ -163,8 +162,7 @@ const Navbar = () => {
               </a>
             ))}
             <a
-              role="link"
-              aria-disabled="true"
+              href="#register"
               onClick={() => setOpen(false)}
               className="lime-button mt-5 w-fit rounded-full px-10 py-3.5 text-[15px] font-bold uppercase tracking-widest"
             >

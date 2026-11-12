@@ -23,7 +23,7 @@ const NAVIGATE = [
 ];
 
 const QUICK_LINKS = [
-  { label: "Register Now", href: "" }, // registration link disabled for now,
+  { label: "Register Now", href: "#register" },
   { label: "Previous Edition", href: "#previousedition" },
   { label: "Contact Us", href: `#event` },
 ];
