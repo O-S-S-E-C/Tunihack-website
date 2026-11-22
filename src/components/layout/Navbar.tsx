@@ -8,6 +8,9 @@ const LINKS = [
   { id: 'program', label: 'Programme' },
   { id: 'sponsors', label: 'Sponsors' },
   { id: 'previousedition', label: 'Previous Edition' },
+  { id: 'ambassadors', label: 'Ambassadors' },
+  { id: 'board', label: 'Board' },
+  { id: 'radio', label: 'Radio' },
   { id: 'contact', label: 'Contact Us' },
  
 ];

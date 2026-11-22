@@ -3,6 +3,9 @@ import Hero from '@/components/sections/Hero';
 import CountdownTimer from '@/components/sections/CountdownTimer';
 import About from '@/components/about/About';
 import PreviousEdition from '@/components/sections/PreviousEdition';
+import Ambassadors from '@/components/sections/Ambassadors';
+import Board from '@/components/sections/Board';
+import RadioMedia from '@/components/sections/RadioMedia';
 import EventSections from '@/components/sections/EventSections';
 import Footer from '@/components/layout/Footer';
 import Loader from '@/components/ui/Loader';
@@ -17,6 +20,9 @@ export default function Home() {
         <CountdownTimer />
         <About />
         <PreviousEdition />
+        <Ambassadors />
+        <Board />
+        <RadioMedia />
         <EventSections />
         <Footer />
       </div>
