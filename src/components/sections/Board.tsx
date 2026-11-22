@@ -6,23 +6,26 @@ import { useEffect, useRef, type CSSProperties } from "react";
 type BoardMember = {
   id: string;
   name: string;
+  role?: string;
   image: string;
 };
 
 const boardMembers: BoardMember[] = [
-  { id: "board-01", name: "Board Member 01", image: "/Board/3d6c0589-7cc4-41cd-b4d2-7adffdf38e00.jpg" },
-  { id: "board-02", name: "Board Member 02", image: "/Board/503451642_1111826860996275_7973272434169999587_n.jpg" },
-  { id: "board-03", name: "Board Member 03", image: "/Board/611b9de3-4ca8-42d9-8497-c9ddcb123245 (2).jpg" },
-  { id: "board-04", name: "Board Member 04", image: "/Board/863861588_1078948451625847_2010646740261431278_n.jpg" },
-  { id: "board-05", name: "Board Member 05", image: "/Board/DSC_9446.jpg" },
-  { id: "board-06", name: "Board Member 06", image: "/Board/Foto.png" },
-  { id: "board-07", name: "Board Member 07", image: "/Board/IMG_0968-board.jpg" },
-  { id: "board-08", name: "Board Member 08", image: "/Board/IMG_20261024_162350_038.jpg" },
-  { id: "board-09", name: "Board Member 09", image: "/Board/WhatsApp Image 2026-10-24 at 11.56.03 AM.jpeg" },
-  { id: "board-10", name: "Board Member 10", image: "/Board/WhatsApp Image 2026-10-24 at 16.30.11.jpeg" },
-  { id: "board-11", name: "Board Member 11", image: "/Board/_DSC0039.jpg" },
-  { id: "board-12", name: "Board Member 12", image: "/Board/_DSC0111.jpg" },
-  { id: "board-13", name: "Board Member 13", image: "/Board/b88465b3-945c-41dd-be1b-800aba437e76.jpg" },
+  { id: "board-01", name: "Chariak Abdallah", role: "Logistics Manager", image: "/Board/abdallah.png" },
+  { id: "board-02", name: "Abir Mejdoub", role: "Coordinator", image: "/Board/abir.png" },
+  { id: "board-03", name: "Arij Marzougui", role: "Coordinator", image: "/Board/arij.png" },
+  { id: "board-04", name: "Emna Kort", role: "Sponsoring Manager", image: "/Board/emna.png" },
+  { id: "board-05", name: "Farah Hajji", role: "Media Manager – Radio & Television", image: "/Board/farah.png" },
+  { id: "board-06", name: "Ahmed Farouk Aouini", image: "/Board/farouk.png" },
+  { id: "board-07", name: "Laajil Fedi", role: "Coordinator", image: "/Board/fedi.png" },
+  { id: "board-08", name: "Marouen Mohamed Hedi", role: "Media Manager – Social Media Content", image: "/Board/hedi.png" },
+  { id: "board-09", name: "Kanzari Mohamed", role: "Logistics Manager", image: "/Board/kanzari.png" },
+  { id: "board-10", name: "Mouheb Baccouch", role: "Coordinator", image: "/Board/mouheb.png" },
+  { id: "board-11", name: "Nour Ben Amar", role: "Media Manager – Social Media Content", image: "/Board/nour.png" },
+  { id: "board-12", name: "Ons Ben Abdelkader", role: "Sponsoring Manager", image: "/Board/ons ba.png" },
+  { id: "board-13", name: "Lachheb Ons", role: "Design Manager", image: "/Board/onsL.png" },
+  { id: "board-14", name: "Ons Guenaoui", role: "Design Manager", image: "/Board/onsg.png" },
+  { id: "board-15", name: "Ajil Yesser", role: "Coordinator", image: "/Board/yesser.png" },
 ];
 
 const clamp = (value: number, min: number, max: number) =>
@@ -45,6 +48,7 @@ function BoardBadge({ member, index }: { member: BoardMember; index: number }) {
           />
           <p className="board-badge-label">TuniHack Board</p>
           <h3 className="board-badge-name">{member.name}</h3>
+          <p className="board-badge-role">{member.role ?? ""}</p>
           <div className="board-badge-photo">
             <Image
               src={member.image}
@@ -150,7 +154,7 @@ export default function Board() {
         </div>
         <div className="ambassadors-progress" aria-hidden="true">
           <span className="ambassadors-progress-track"><span className="ambassadors-progress-fill" ref={progressRef} /></span>
-          <span className="ambassadors-count" ref={countRef}>01 / 13</span>
+          <span className="ambassadors-count" ref={countRef}>01 / 15</span>
         </div>
       </div>
     </section>
