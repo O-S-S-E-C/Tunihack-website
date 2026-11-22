@@ -12,14 +12,14 @@ type Ambassador = {
 };
 
 const ambassadors: Ambassador[] = [
-  { id: "amb-01", name: "Ghofrane Helal", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/Ghofrane helal.png" },
-  { id: "amb-02", name: "Hazem Souki", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/Hazem Souki.png" },
-  { id: "amb-03", name: "Zayneb Yousfi", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/Zayneb Yousfi.png" },
-  { id: "amb-04", name: "Ali Souihy", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/ali souihy.png" },
-  { id: "amb-05", name: "Aya Skhiri", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/aya skhiri.png" },
-  { id: "amb-06", name: "Ghfranne Labidi", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/ghfranne labidi.png" },
-  { id: "amb-07", name: "Ilef Hlel", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/ilef hlel.png" },
-  { id: "amb-08", name: "Koussay", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/koussay.png" },
+  { id: "amb-01", name: "Ghofrane Helal", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/Ghofrane helal.webp" },
+  { id: "amb-02", name: "Hazem Souki", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/Hazem Souki.webp" },
+  { id: "amb-03", name: "Zayneb Yousfi", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/Zayneb Yousfi.webp" },
+  { id: "amb-04", name: "Ali Souihy", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/ali souihy.webp" },
+  { id: "amb-05", name: "Aya Skhiri", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/aya skhiri.webp" },
+  { id: "amb-06", name: "Ghfranne Labidi", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/ghfranne labidi.webp" },
+  { id: "amb-07", name: "Ilef Hlel", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/ilef hlel.webp" },
+  { id: "amb-08", name: "Koussay", school: "TuniHack Ambassador", city: "Tunisia", image: "/Ambassadors/koussay.webp" },
 ];
 
 const clamp = (value: number, min: number, max: number) =>

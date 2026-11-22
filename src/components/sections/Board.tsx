@@ -11,21 +11,21 @@ type BoardMember = {
 };
 
 const boardMembers: BoardMember[] = [
-  { id: "board-01", name: "Chariak Abdallah", role: "Logistics Manager", image: "/Board/abdallah.png" },
-  { id: "board-02", name: "Abir Mejdoub", role: "Coordinator", image: "/Board/abir.png" },
-  { id: "board-03", name: "Arij Marzougui", role: "Coordinator", image: "/Board/arij.png" },
-  { id: "board-04", name: "Emna Kort", role: "Sponsoring Manager", image: "/Board/emna.png" },
-  { id: "board-05", name: "Farah Hajji", role: "Media Manager – Radio & Television", image: "/Board/farah.png" },
-  { id: "board-06", name: "Ahmed Farouk Aouini", image: "/Board/farouk.png" },
-  { id: "board-07", name: "Laajil Fedi", role: "Coordinator", image: "/Board/fedi.png" },
-  { id: "board-08", name: "Marouen Mohamed Hedi", role: "Media Manager – Social Media Content", image: "/Board/hedi.png" },
-  { id: "board-09", name: "Kanzari Mohamed", role: "Logistics Manager", image: "/Board/kanzari.png" },
-  { id: "board-10", name: "Mouheb Baccouch", role: "Coordinator", image: "/Board/mouheb.png" },
-  { id: "board-11", name: "Nour Ben Amar", role: "Media Manager – Social Media Content", image: "/Board/nour.png" },
-  { id: "board-12", name: "Ons Ben Abdelkader", role: "Sponsoring Manager", image: "/Board/ons ba.png" },
-  { id: "board-13", name: "Lachheb Ons", role: "Design Manager", image: "/Board/onsL.png" },
-  { id: "board-14", name: "Ons Guenaoui", role: "Design Manager", image: "/Board/onsg.png" },
-  { id: "board-15", name: "Ajil Yesser", role: "Coordinator", image: "/Board/yesser.png" },
+  { id: "board-01", name: "Chariak Abdallah", role: "Logistics Manager", image: "/Board/abdallah.webp" },
+  { id: "board-02", name: "Abir Mejdoub", role: "Coordinator", image: "/Board/abir.webp" },
+  { id: "board-03", name: "Arij Marzougui", role: "Coordinator", image: "/Board/arij.webp" },
+  { id: "board-04", name: "Emna Kort", role: "Sponsoring Manager", image: "/Board/emna.webp" },
+  { id: "board-05", name: "Farah Hajji", role: "Media Manager – Radio & Television", image: "/Board/farah.webp" },
+  { id: "board-06", name: "Ahmed Farouk Aouini", image: "/Board/farouk.webp" },
+  { id: "board-07", name: "Laajil Fedi", role: "Coordinator", image: "/Board/fedi.webp" },
+  { id: "board-08", name: "Marouen Mohamed Hedi", role: "Media Manager – Social Media Content", image: "/Board/hedi.webp" },
+  { id: "board-09", name: "Kanzari Mohamed", role: "Logistics Manager", image: "/Board/kanzari.webp" },
+  { id: "board-10", name: "Mouheb Baccouch", role: "Coordinator", image: "/Board/mouheb.webp" },
+  { id: "board-11", name: "Nour Ben Amar", role: "Media Manager – Social Media Content", image: "/Board/nour.webp" },
+  { id: "board-12", name: "Ons Ben Abdelkader", role: "Sponsoring Manager", image: "/Board/ons ba.webp" },
+  { id: "board-13", name: "Lachheb Ons", role: "Design Manager", image: "/Board/onsL.webp" },
+  { id: "board-14", name: "Ons Guenaoui", role: "Design Manager", image: "/Board/onsg.webp" },
+  { id: "board-15", name: "Ajil Yesser", role: "Coordinator", image: "/Board/yesser.webp" },
 ];
 
 const clamp = (value: number, min: number, max: number) =>
