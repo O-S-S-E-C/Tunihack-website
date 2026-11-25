@@ -40,6 +40,7 @@ const days: { id: string; label: string; date: string; events: ProgrammeEvent[] 
       { time: "12:00 – 13:00", title: "Lunch Break", detail: "Midday break" },
       { time: "13:00 – 16:00", title: "TuniHack Presentation", detail: "Final project demos and pitches" },
       { time: "16:00 – 17:00", title: "Closing Ceremony", detail: "Winners announcement and closing" },
+      { time: "17:00 – 18:00", title: "Dinner Break", detail: "Evening meal break" },
     ],
   },
 ];
