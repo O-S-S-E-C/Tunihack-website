@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Play } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 type RadioFeature = {
@@ -23,6 +24,12 @@ const radioFeatures: RadioFeature[] = [
     image: "/media/radio-rtci-cutout.webp",
     videoUrl: "https://www.facebook.com/share/p/1L4ete1M6w/",
   },
+  {
+    id: "tv",
+    name: "TV",
+    image: "/media/tv-cutout.webp",
+    videoUrl: "https://www.youtube.com/watch?v=0PtAK_w1XoA",
+  },
 ];
 
 const clamp = (value: number, min: number, max: number) =>
@@ -31,15 +38,10 @@ const clamp = (value: number, min: number, max: number) =>
 function RadioCard({ feature }: { feature: RadioFeature }) {
   return (
     <li className="radio-artwork-item">
-      {feature.videoUrl ? (
-        <a className="radio-artwork-link" href={feature.videoUrl} target="_blank" rel="noreferrer" aria-label={`Watch TuniHack on ${feature.name}`}>
-          <Image className="radio-artwork" src={feature.image} alt={`${feature.name} radio`} width={760} height={790} sizes="(max-width: 1023px) 90vw, 20vw" />
-        </a>
-      ) : (
-        <div className="radio-artwork-link" aria-label={`${feature.name} video link coming soon`}>
-          <Image className="radio-artwork" src={feature.image} alt={`${feature.name} radio`} width={760} height={790} sizes="(max-width: 1023px) 90vw, 20vw" />
-        </div>
-      )}
+      <a className="radio-artwork-link" href={feature.videoUrl} target="_blank" rel="noreferrer" aria-label={`Watch TuniHack on ${feature.name}`}>
+        <Image className="radio-artwork" src={feature.image} alt={feature.id === "tv" ? "Wataniya 2 logo on a retro television screen" : `${feature.name} radio`} width={feature.id === "tv" ? 800 : 760} height={feature.id === "tv" ? 832 : 790} sizes="(max-width: 1023px) 90vw, 30vw" />
+        <span className="radio-play-button" aria-hidden="true"><Play size={22} fill="currentColor" strokeWidth={1.75} /></span>
+      </a>
     </li>
   );
 }
@@ -93,7 +95,7 @@ export default function RadioMedia() {
       }
       travel = Math.max(0, track.scrollWidth - viewport.clientWidth);
       sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      section.style.height = `${window.innerHeight + travel}px`;
+      section.style.height = `${viewport.clientHeight + travel}px`;
       scheduleUpdate();
     };
 
@@ -124,7 +126,7 @@ export default function RadioMedia() {
       <div className="ambassadors-pin" ref={viewportRef}>
         <header className="ambassadors-header">
           <p className="about-eyebrow">TuniHack in the media</p>
-          <h2 id="radio-heading" className="about-heading">On the Radio</h2>
+          <h2 id="radio-heading" className="about-heading">On Radio &amp; TV</h2>
           <div className="about-heading-rule" aria-hidden="true" />
         </header>
         <div className="ambassadors-track-window" ref={trackWindowRef}>

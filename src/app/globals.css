@@ -222,12 +222,20 @@ html[data-scene-section="program"] .site-background-overlay {
 .board-badge-photo { position: relative; width: 100%; min-height: 0; flex: 1; margin-top: .25rem; overflow: hidden; border: 1px solid rgb(96 165 250 / 30%); border-radius: 14px; background: linear-gradient(145deg, #0b2450, #07142d); }
 .board-badge-photo::after { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgb(3 9 24 / 28%)); content: ""; pointer-events: none; }
 .board-badge-photo-image { object-fit: cover; }
-.radio-track { min-width: 100%; justify-content: center; }
-.radio-artwork-item { flex: 0 0 auto; width: min(240px, 20vw, max(160px, calc((100svh - 18rem) * .96))); }
-.radio-artwork-link { display: block; color: inherit; text-decoration: none; }
+.radio-section .ambassadors-header { width: auto; margin: max(7.5rem, 12svh) clamp(1.5rem, 4vw, 5rem) 0; }
+.radio-section .ambassadors-track { flex: 0 0 auto; padding-inline: clamp(1.5rem, 4vw, 5rem); }
+.radio-section .ambassadors-progress { margin-inline: clamp(1.5rem, 4vw, 5rem); }
+.radio-section .radio-track { min-width: 0; justify-content: flex-start; }
+.radio-artwork-item { flex: 0 0 auto; width: clamp(220px, min(30vw, 50svh), 760px); }
+.radio-artwork-link { position: relative; display: block; color: inherit; text-decoration: none; }
 .radio-artwork-link:focus-visible { outline: 2px solid var(--secondary); outline-offset: 6px; }
 .radio-artwork { display: block; width: 100%; height: auto; filter: drop-shadow(0 24px 42px rgb(0 0 0 / 38%)); transition: transform 180ms ease, filter 180ms ease; }
-.radio-artwork-link[href]:hover .radio-artwork { filter: drop-shadow(0 26px 44px rgb(34 211 238 / 16%)); transform: translateY(-3px); }
+.radio-play-button { position: relative; display: grid; width: clamp(3rem, 4vw, 3.5rem); aspect-ratio: 1; place-items: center; margin: clamp(1rem, 2svh, 1.5rem) auto 0; border: 1px solid rgb(186 240 255 / 78%); border-radius: 50%; background: radial-gradient(circle at 34% 24%, rgb(103 232 249 / 30%), transparent 38%), linear-gradient(145deg, #12385b 0%, #06182d 48%, #020817 78%); box-shadow: 0 5px 16px rgb(0 0 0 / 48%), 0 0 18px rgb(34 211 238 / 32%), inset 0 1px 1px rgb(255 255 255 / 38%), inset 0 -3px 8px rgb(0 0 0 / 60%), inset 0 0 12px rgb(34 211 238 / 20%); color: #8beeff; transition: background 180ms ease, box-shadow 180ms ease, color 180ms ease, transform 180ms ease; }
+.radio-play-button::before { position: absolute; inset: 4px; border: 1px solid rgb(103 232 249 / 38%); border-radius: inherit; box-shadow: inset 0 0 8px rgb(34 211 238 / 16%); content: ""; }
+.radio-play-button::after { position: absolute; top: 8px; left: 13px; width: 15px; height: 3px; border-radius: 999px; background: linear-gradient(90deg, rgb(255 255 255 / 72%), transparent); content: ""; }
+.radio-play-button svg { margin-left: 2px; filter: drop-shadow(0 0 5px rgb(34 211 238 / 68%)); }
+.radio-artwork-link:hover .radio-play-button, .radio-artwork-link:focus-visible .radio-play-button { background: radial-gradient(circle at 34% 24%, rgb(165 243 252 / 40%), transparent 38%), linear-gradient(145deg, #15517b 0%, #08243e 48%, #031020 78%); box-shadow: 0 6px 20px rgb(0 0 0 / 52%), 0 0 27px rgb(34 211 238 / 52%), inset 0 1px 1px rgb(255 255 255 / 48%), inset 0 -3px 8px rgb(0 0 0 / 55%), inset 0 0 16px rgb(34 211 238 / 28%); color: #c7f9ff; transform: scale(1.08); }
+.radio-artwork-link:hover .radio-artwork { filter: drop-shadow(0 26px 44px rgb(34 211 238 / 16%)); transform: translateY(-3px); }
 @keyframes ambassador-sway { from { transform: rotate(-1.3deg); } to { transform: rotate(1.3deg); } }
 @media (max-width: 1023px) {
   .ambassadors-section { height: auto !important; overflow: visible; padding-block: 3rem; }
@@ -240,11 +248,11 @@ html[data-scene-section="program"] .site-background-overlay {
   .ambassador-badge { border-radius: 22px; }
   .board-badge-content { padding: .75rem; }
   .board-badge-name { font-size: .9rem; }
-  .radio-artwork-item { width: min(200px, calc(100vw - 3rem), max(160px, calc((100svh - 18rem) * .96))); }
+  .radio-artwork-item { width: min(82vw, 42svh); }
   .ambassadors-progress { margin-inline: 1.5rem; }
 }
 @media (max-height: 600px) and (min-width: 1024px) {
-  .ambassadors-header { margin-top: 4.5rem; }
+  .radio-section .ambassadors-header { margin-top: max(7.5rem, 12svh); }
   .ambassador-badge { border-radius: 20px; }
   .ambassador-item { padding-top: 1rem; }
   .ambassador-lanyard { top: -2.75rem; height: 3rem; }
