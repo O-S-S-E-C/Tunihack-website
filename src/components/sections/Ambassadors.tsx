@@ -73,7 +73,6 @@ export default function Ambassadors() {
     const compactLayout = window.matchMedia("(max-width: 1023px)");
     let sectionTop = 0;
     let travel = 0;
-    let sectionHeight = window.innerHeight;
     let raf = 0;
 
     const update = () => {
@@ -104,8 +103,7 @@ export default function Ambassadors() {
       }
       travel = Math.max(0, track.scrollWidth - viewport.clientWidth);
       sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      sectionHeight = window.innerHeight + travel;
-      section.style.height = `${sectionHeight}px`;
+      section.style.height = `${viewport.clientHeight + travel}px`;
       scheduleUpdate();
     };
 
