@@ -113,7 +113,7 @@ export default function Board() {
       }
       travel = Math.max(0, track.scrollWidth - viewport.clientWidth);
       sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      section.style.height = `${window.innerHeight + travel}px`;
+      section.style.height = `${viewport.clientHeight + travel}px`;
       scheduleUpdate();
     };
 
