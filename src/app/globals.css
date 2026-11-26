@@ -1021,7 +1021,7 @@ html[data-loading="on"] .hero-rise { animation-play-state: paused; }
   white-space: nowrap;
 }
 
-/* Outline first, then a solid copy wipes in from the left. */
+/* OOOOutline first, then a solid copy wipes in from the left. */
 .wm-outline {
   position: relative;
   display: inline-block;
