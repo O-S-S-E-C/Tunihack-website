@@ -38,26 +38,15 @@ function BoardBadge({ member, index }: { member: BoardMember; index: number }) {
         <div className="ambassador-lanyard" aria-hidden="true"><span /></div>
         <div className="ambassador-clip" aria-hidden="true"><span /></div>
         <div className="ambassador-hole" aria-hidden="true" />
-        <div className="board-badge-content">
+        <div className="board-badge-photo">
           <Image
-            className="board-badge-logo"
-            src="/logo/TuniHack-removebg-preview.png"
-            alt="TuniHack"
-            width={96}
-            height={42}
+            src={member.image}
+            alt={`${member.name}${member.role ? `, ${member.role}` : ""}`}
+            width={1080}
+            height={1350}
+            sizes="(max-width: 1023px) 300px, 22vw"
+            className="board-badge-photo-image"
           />
-          <p className="board-badge-label">TuniHack Board</p>
-          <h3 className="board-badge-name">{member.name}</h3>
-          <p className="board-badge-role">{member.role ?? ""}</p>
-          <div className="board-badge-photo">
-            <Image
-              src={member.image}
-              alt={`Portrait of ${member.name}`}
-              fill
-              sizes="(max-width: 1023px) 300px, 22vw"
-              className="board-badge-photo-image"
-            />
-          </div>
         </div>
       </article>
     </li>
